@@ -7,6 +7,7 @@ include "./src/TrayCommerce.php";
 include "./src/TrayEndpoints.php";
 include "./Auth.php";
 include "./CarrinhoCompra.php";
+include "./Pedido.php";
 
 try {
 
@@ -21,6 +22,8 @@ try {
         $auth->gerarChaveAcesso($_GET["code"], $_GET["api_address"]);
 
         $carrinho = new CarrinhoCompra($auth);
+        
+        $pedido = new Pedido($auth);        
 
         echo '<pre>';
         print_r($carrinho->consultarDados("c8qk221u7bn3pu8qngh2bhcc46"));

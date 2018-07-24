@@ -6,7 +6,13 @@ class CarrinhoCompra extends TrayEndpoints {
     public function __construct(Auth $auth) {
         parent::__construct($auth);
     }
-
+    
+    /**
+     * 
+     * @param type $sessionId
+     * @return type object
+     * @throws Exception
+     */
     public function consultarDados($sessionId) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
