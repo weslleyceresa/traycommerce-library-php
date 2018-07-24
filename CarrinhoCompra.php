@@ -133,16 +133,20 @@ class CarrinhoCompra extends TrayEndpoints {
 
         return null;
     }
-
-    public function excluirCarrinho() {
+    
+    /**
+     * 
+     * @param type $sessionId
+     * @return type object
+     * @throws Exception
+     */
+    public function excluirCarrinho($sessionId) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
         $post = array(
             "access_token" => $this->auth->getAccessToken()
         );
-        
-        $post = array_merge($post, $data);
 
         $resposta = $this->put(self::uri . $sessionId, $post);
 
@@ -152,6 +156,103 @@ class CarrinhoCompra extends TrayEndpoints {
 
         return null;
     }
+    
+    /**
+     * 
+     * @param type $sessionId
+     * @param type $productId
+     * @param type $variantId
+     * @return type object
+     * @throws Exception
+     */
+    public function ConsultarProdutoCarrinho($sessionId, $productId, $variantId = null){
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
 
+        $post = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $url = self::uri . $sessionId . "/" . $productId;
+        
+        if(!empty($variantId))
+            $url += "/" . $variantId;
+
+        $resposta = $this->get($url, $post);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /*
+        $data["Cart"]["quantity"] = "5";
+        $data["Cart"]["price"] = "54.00";
+     */
+    
+    /**
+     * 
+     * @param type $sessionId
+     * @param type $productId
+     * @param type $data
+     * @param type $variantId
+     * @return type object
+     * @throws Exception
+     */
+    public function AtualizarProdutoCarrinho($sessionId, $productId, $data, $variantId = null){
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $post = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $post = array_merge($post, $data);
+        
+        $url = self::uri . $sessionId . "/" . $productId;
+        
+        if(!empty($variantId))
+            $url += "/" . $variantId;
+
+        $resposta = $this->put($url, $post);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /**
+     * 
+     * @param type $sessionId
+     * @param type $productId
+     * @param type $variantId
+     * @return type object
+     * @throws Exception
+     */
+    public function ExcluirProdutoCarrinho($sessionId, $productId, $variantId = null){
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $post = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $url = self::uri . $sessionId . "/" . $productId;
+        
+        if(!empty($variantId))
+            $url += "/" . $variantId;
+
+        $resposta = $this->delete($url, $post);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
 }
 ?>
