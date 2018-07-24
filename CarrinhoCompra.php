@@ -30,7 +30,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function consultarCarrinhoCompleto($sessionId) {
+    public function consultarCompleto($sessionId) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -72,7 +72,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function criarNovoCarrinho($data = array()) {
+    public function criarNovo($data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -115,7 +115,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function atualizarDadosCarrinho($sessionId, $data) {
+    public function atualizarDados($sessionId, $data) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -140,7 +140,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function excluirCarrinho($sessionId) {
+    public function excluir($sessionId) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -165,7 +165,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function ConsultarProdutoCarrinho($sessionId, $productId, $variantId = null){
+    public function ConsultarProduto($sessionId, $productId, $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -201,7 +201,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function AtualizarProdutoCarrinho($sessionId, $productId, $data, $variantId = null){
+    public function AtualizarProduto($sessionId, $productId, $data, $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -233,7 +233,7 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function ExcluirProdutoCarrinho($sessionId, $productId, $variantId = null){
+    public function ExcluirProduto($sessionId, $productId, $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
