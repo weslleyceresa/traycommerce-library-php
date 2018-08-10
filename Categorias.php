@@ -60,12 +60,52 @@ class Categorias extends TrayEndpoints {
         }
     }
 
-    public function cadastrarCategoria($param) {
+    public function cadastrarCategoria($data) {
         if (!$this->auth->estaAutorizado()) {
             throw Exception("A API não foi autorizada");
         }
         
-        $params['access_token'] = $this->auth->getAccessToken();
+        $post = array_merge(["access_token" => $this->auth->getAccessToken()], $data);
+        
+        $resposta = $this->post(self::uri, $post);
+
+        if ($resposta["code"] == 201) {
+            return $resposta["data"];
+        } else {
+            throw new Exception('Erro ao cadastrar categoria');
+        }
+    }
+    
+    public function atualizarCategoria($data) {
+        if (!$this->auth->estaAutorizado()) {
+            throw Exception("A API não foi autorizada");
+        }
+        
+        $put = array_merge(["access_token" => $this->auth->getAccessToken()], $data);
+        
+        $resposta = $this->put(self::uri, $put);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        } else {
+            throw new Exception('Erro ao atualizar categoria');
+        }
+    }
+    
+    public function excluirCategoria($idCategoria) {
+        if (!$this->auth->estaAutorizado()) {
+            throw Exception("A API não foi autorizada");
+        }
+        
+        $delete = array_merge(["access_token" => $this->auth->getAccessToken()], $idCategoria);
+        
+        $resposta = $this->delete(self::uri, $delete);
+        
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        } else {
+            throw new Exception('Erro ao excluir categoria');
+        }
     }
 
 }
