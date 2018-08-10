@@ -66,7 +66,7 @@
 			$resposta = $this->post("auth/", $post);
 
 			if($resposta["code"] != "201" && $resposta["code"] != "200")
-				throw new Exception("Problema com a autorização na Tray.");
+				throw new Exception($apiAddress . " - Problema com a autorização na Tray.");
 
 			$this->base_url_api = $apiAddress;
 			$this->store_id = $resposta["data"]->store_id;
