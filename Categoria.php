@@ -1,6 +1,6 @@
 <?php
 
-class Categorias extends TrayEndpoints {
+class Categoria extends TrayEndpoints {
 
     const uri = "categories/";
 
@@ -24,7 +24,7 @@ class Categorias extends TrayEndpoints {
         }
     }
 
-    public function consultarArvoreCategorias($categoriaId) {
+    public function consultarArvoreCategorias($categoriaId = "") {
         $uri = self::uri . "tree/";
 
         if (!$this->auth->estaAutorizado()) {
