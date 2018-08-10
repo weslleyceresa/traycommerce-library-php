@@ -6,7 +6,7 @@ class Produto extends TrayEndpoints{
         parent::__construct($auth);
     }
     
-    public function ListagemCaracterísticasProdutos($filtros = array()){
+    public function listagemCaracterísticasProdutos($filtros = array()){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
