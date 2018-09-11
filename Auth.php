@@ -20,25 +20,25 @@
 			if(is_array($params) && isset($params["callback"]))
 				$this->callback = $params["callback"];
 			else{
-				throw new Exception("parâmetro callback é obrigatório.");
+				throw new Exception("[Auth][params] parâmetro callback é obrigatório.");
 			}
 
 			if(is_array($params) && isset($params["consumer_key"]))
 				$this->consumer_key = $params["consumer_key"];
 			else{
-				throw new Exception("parâmetro consumer_key é obrigatório.");
+				throw new Exception("[Auth][params] parâmetro consumer_key é obrigatório.");
 			}
 
 			if(is_array($params) && isset($params["consumer_secret"]))
 				$this->consumer_secret = $params["consumer_secret"];
 			else{
-				throw new Exception("parâmetro consumer_secret é obrigatório.");
+				throw new Exception("[Auth][params] parâmetro consumer_secret é obrigatório.");
 			}
 
 			if(is_array($params) && isset($params["store_url"]))
 				$this->store_url = $params["store_url"];
 			else{
-				throw new Exception("parâmetro store_url é obrigatório.");
+				throw new Exception("[Auth][params] parâmetro store_url é obrigatório.");
 			}
 		}
 
@@ -66,7 +66,7 @@
 			$resposta = $this->post("auth/", $post);
 
 			if($resposta["code"] != "201" && $resposta["code"] != "200")
-				throw new Exception($apiAddress . " - Problema com a autorização na Tray.");
+				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: " . $resposta["err"]);
 
 			$this->base_url_api = $apiAddress;
 			$this->store_id = $resposta["data"]->store_id;
