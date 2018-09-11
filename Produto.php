@@ -13,8 +13,10 @@ class Produto extends TrayEndpoints{
         $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
+        
+        $query = array_merge($post, $filtros);
 
-        $resposta = $this->get(self::uri . "properties/", $filtros, $query);
+        $resposta = $this->get(self::uri . "properties/", array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
