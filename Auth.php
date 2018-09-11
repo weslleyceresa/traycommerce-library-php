@@ -65,8 +65,17 @@
 
 			$resposta = $this->post("auth/", $post);
 
-			if($resposta["code"] != "201" && $resposta["code"] != "200")
-				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: " . $resposta["err"]);
+			if($resposta["code"] != "201" && $resposta["code"] != "200"){
+				$causes = array();
+
+				if($resposta["data"]){
+					foreach ($resposta["data"]->causes as $cause) {
+						$causes[] = $cause;
+					}
+				}
+
+				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: " . $resposta["err"]." - ".implode(", ", $causes));
+			}
 
 			$this->base_url_api = $apiAddress;
 			$this->store_id = $resposta["data"]->store_id;
