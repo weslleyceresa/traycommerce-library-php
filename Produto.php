@@ -10,13 +10,13 @@ class Produto extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
         $post = array_merge($post, $filtros);
 
-        $resposta = $this->get(self::uri . "properties/", $post);
+        $resposta = $this->get(self::uri . "properties/", $filtros, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
