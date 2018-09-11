@@ -14,7 +14,7 @@ class Produto extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $query = array_merge($post, $filtros);
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . "properties/", array(), $query);
 
