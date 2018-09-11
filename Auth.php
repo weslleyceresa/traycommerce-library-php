@@ -57,13 +57,13 @@
 
 			parent::setBaseUrlApi($apiAddress);
 
-			$post = array(
+			$data = array(
 				"consumer_key" => $this->consumer_key,
 				"consumer_secret" => $this->consumer_secret,
 				"code" => $code,
 			);
 
-			$resposta = $this->post("auth/", $post);
+			$resposta = $this->post("auth/", $data, $data);
 
 			if($resposta["code"] != "201" && $resposta["code"] != "200"){
 				$causes = array();

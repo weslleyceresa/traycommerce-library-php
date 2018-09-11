@@ -96,44 +96,44 @@ class TrayCommerce {
         return $this->base_url_api = $baseUrlApi . "/";
     }
 
-    public function post($action, $params = array()) {
+    public function post($action, $params = array(), $query = array()) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-                        $this->base_url_api . $action, $params, "POST"
+                        $this->base_url_api . $action, $params, $query, "POST"
         );
     }
 
-    public function get($action, $params = array()) {
+    public function get($action, $params = array(), $query = array()) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-                        $this->base_url_api . $action, $params, "GET"
+                        $this->base_url_api . $action, $params, $query, "GET"
         );
     }
 
-    public function put($action, $params = array()) {
+    public function put($action, $params = array(), $query = array()) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-                        $this->base_url_api . $action, $params, "PUT"
+                        $this->base_url_api . $action, $params, $query, "PUT"
         );
     }
 
-    public function delete($action, $params = array()) {
+    public function delete($action, $params = array(), $query = array()) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-                        $this->base_url_api . $action, $params, "DELETE"
+                        $this->base_url_api . $action, $params, $query, "DELETE"
         );
     }
 
-    private function curlPost($url, $params, $type = "POST") {
-        $params = http_build_query($params);
+    private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST") {
+        $params = http_build_query($getParams);
 
         $url = $url . "?" . $params;
 
@@ -141,7 +141,7 @@ class TrayCommerce {
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postParams);
         curl_setopt($ch, CURLOPT_SSLVERSION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -163,17 +163,17 @@ class TrayCommerce {
         );
     }
 
-    private function curlPut($url, $params, $type = "PUT") {
-        $url = $url . "?" . http_build_query($params);
+    private function curlPut($url, $postParams = array(), $getParams = array(), $type = "PUT") {
+        $url = $url . "?" . http_build_query($getParams);
 
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postParams));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'Content-Length: ' . strlen(json_encode($params)))
+            'Content-Length: ' . strlen(json_encode($postParams)))
         );
         curl_setopt($ch, CURLOPT_SSLVERSION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
