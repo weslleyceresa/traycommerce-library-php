@@ -16,13 +16,13 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $filtros);
+        $query = array_merge($query, $filtros);
 
-        $resposta = $this->get(self::uri, $post);
+        $resposta = $this->get(self::uri, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -41,11 +41,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->get(self::uri . $orderId, $post);
+        $resposta = $this->get(self::uri . $orderId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -64,11 +64,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->get(self::uri . $orderId . "/complete", $post);
+        $resposta = $this->get(self::uri . $orderId . "/complete", array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -111,17 +111,15 @@ class Pedido extends TrayEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function cadastrar($data) {
+    public function cadastrar($data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-
-        $resposta = $this->post(self::uri, $post);
+        $resposta = $this->post(self::uri, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -150,17 +148,15 @@ class Pedido extends TrayEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function atualizarDados($orderId, $data) {
+    public function atualizarDados($orderId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-
-        $resposta = $this->put(self::uri . $orderId, $post);
+        $resposta = $this->put(self::uri . $orderId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -179,11 +175,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->put(self::uri . "cancel/" . $orderId, $post);
+        $resposta = $this->put(self::uri . "cancel/" . $orderId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -202,11 +198,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->delete(self::uri . $orderId, $post);
+        $resposta = $this->delete(self::uri . $orderId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -225,13 +221,13 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $filtros);
+        $query = array_merge($query, $filtros);
         
-        $resposta = $this->get(self::uri . "invoices", $post);
+        $resposta = $this->get(self::uri . "invoices", array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -251,11 +247,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $post);
+        $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -274,11 +270,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", $post);
+        $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -307,17 +303,15 @@ class Pedido extends TrayEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function cadastrarNotaFiscal($orderId, $data) {
+    public function cadastrarNotaFiscal($orderId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-        
-        $resposta = $this->post(self::uri . $orderId . "/" . "invoices/", $post);
+        $resposta = $this->post(self::uri . $orderId . "/" . "invoices/", $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -347,17 +341,15 @@ class Pedido extends TrayEndpoints{
      * @return object
      * @throws Exception
      */
-    public function atualizarNotaFiscal($orderId, $invoiceId, $data) {
+    public function atualizarNotaFiscal($orderId, $invoiceId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-        
-        $resposta = $this->put(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $post);
+        $resposta = $this->put(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -381,17 +373,15 @@ class Pedido extends TrayEndpoints{
      * @return object
      * @throws Exception
      */
-    public function incluirProduto($orderId, $data) {
+    public function incluirProduto($orderId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-        
-        $resposta = $this->post(self::uri . "includeProduct/" . $orderId, $post);
+        $resposta = $this->post(self::uri . "includeProduct/" . $orderId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -411,13 +401,11 @@ class Pedido extends TrayEndpoints{
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $post = array_merge($post, $data);
-        
-        $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, $post);
+        $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];

@@ -17,11 +17,11 @@ class CarrinhoCompra extends TrayEndpoints {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->get(self::uri . $sessionId, $post);
+        $resposta = $this->get(self::uri . $sessionId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -40,11 +40,11 @@ class CarrinhoCompra extends TrayEndpoints {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->get(self::uri . $sessionId . "/complete", $post);
+        $resposta = $this->get(self::uri . $sessionId . "/complete", array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -82,13 +82,11 @@ class CarrinhoCompra extends TrayEndpoints {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
-        
-        $post = array_merge($post, $data);
 
-        $resposta = $this->post(self::uri, $post);
+        $resposta = $this->post(self::uri, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -121,17 +119,15 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function atualizarDados($sessionId, $data) {
+    public function atualizarDados($sessionId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
-        
-        $post = array_merge($post, $data);
 
-        $resposta = $this->put(self::uri . $sessionId, $post);
+        $resposta = $this->put(self::uri . $sessionId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -150,11 +146,11 @@ class CarrinhoCompra extends TrayEndpoints {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->put(self::uri . $sessionId, $post);
+        $resposta = $this->put(self::uri . $sessionId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -171,11 +167,11 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function ConsultarProduto($sessionId, $productId, $variantId = null){
+    public function consultarProduto($sessionId, $productId, $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
@@ -184,7 +180,7 @@ class CarrinhoCompra extends TrayEndpoints {
         if(!empty($variantId))
             $url += "/" . $variantId;
 
-        $resposta = $this->get($url, $post);
+        $resposta = $this->get($url, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -207,22 +203,20 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function AtualizarProduto($sessionId, $productId, $data, $variantId = null){
+    public function atualizarProduto($sessionId, $productId, $data = array(), $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
-        
-        $post = array_merge($post, $data);
         
         $url = self::uri . $sessionId . "/" . $productId;
         
         if(!empty($variantId))
             $url += "/" . $variantId;
 
-        $resposta = $this->put($url, $post);
+        $resposta = $this->put($url, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -239,11 +233,11 @@ class CarrinhoCompra extends TrayEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function ExcluirProduto($sessionId, $productId, $variantId = null){
+    public function excluirProduto($sessionId, $productId, $variantId = null){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
-        $post = array(
+        $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
         
@@ -252,7 +246,7 @@ class CarrinhoCompra extends TrayEndpoints {
         if(!empty($variantId))
             $url += "/" . $variantId;
 
-        $resposta = $this->delete($url, $post);
+        $resposta = $this->delete($url, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];

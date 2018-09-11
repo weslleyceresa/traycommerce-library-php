@@ -13,9 +13,9 @@ class Categoria extends TrayEndpoints {
             throw Exception("A API não foi autorizada");
         }
 
-        $get = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
+        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
 
-        $resposta = $this->get(self::uri, $get);
+        $resposta = $this->get(self::uri, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -31,11 +31,11 @@ class Categoria extends TrayEndpoints {
             throw Exception("A API não foi autorizada");
         }
 
-        $get = [
+        $query = [
             "access_token" => $this->auth->getAccessToken()
         ];
 
-        $resposta = $this->get($uri . $categoriaId, $get);
+        $resposta = $this->get($uri . $categoriaId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -49,9 +49,9 @@ class Categoria extends TrayEndpoints {
             throw Exception("A API não foi autorizada");
         }
 
-        $get = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
+        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
 
-        $resposta = $this->get(self::uri . $categoriaId, $get);
+        $resposta = $this->get(self::uri . $categoriaId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -60,14 +60,16 @@ class Categoria extends TrayEndpoints {
         }
     }
 
-    public function cadastrarCategoria($data) {
+    public function cadastrarCategoria($data = []) {
         if (!$this->auth->estaAutorizado()) {
             throw Exception("A API não foi autorizada");
         }
         
-        $post = array_merge(["access_token" => $this->auth->getAccessToken()], $data);
+        $query = [
+            "access_token" => $this->auth->getAccessToken()
+        ];
         
-        $resposta = $this->post(self::uri, $post);
+        $resposta = $this->post(self::uri, $data, $query);
 
         if ($resposta["code"] == 201) {
             return $resposta["data"];
@@ -76,14 +78,16 @@ class Categoria extends TrayEndpoints {
         }
     }
     
-    public function atualizarCategoria($data) {
+    public function atualizarCategoria($data = []) {
         if (!$this->auth->estaAutorizado()) {
             throw Exception("A API não foi autorizada");
         }
         
-        $put = array_merge(["access_token" => $this->auth->getAccessToken()], $data);
+        $query = [
+            "access_token" => $this->auth->getAccessToken()
+        ];
         
-        $resposta = $this->put(self::uri, $put);
+        $resposta = $this->put(self::uri, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -97,9 +101,11 @@ class Categoria extends TrayEndpoints {
             throw Exception("A API não foi autorizada");
         }
         
-        $delete = array_merge(["access_token" => $this->auth->getAccessToken()], $idCategoria);
+        $query = [
+            "access_token" => $this->auth->getAccessToken()
+        ];
         
-        $resposta = $this->delete(self::uri, $delete);
+        $resposta = $this->delete(self::uri, array(), $query);
         
         if ($resposta["code"] == 200) {
             return $resposta["data"];
