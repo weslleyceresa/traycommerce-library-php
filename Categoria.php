@@ -24,16 +24,14 @@ class Categoria extends TrayEndpoints {
         }
     }
 
-    public function consultarArvoreCategorias($categoriaId = "") {
+    public function consultarArvoreCategorias($filtros = []) {
         $uri = self::uri . "tree/";
 
         if (!$this->auth->estaAutorizado()) {
             throw Exception("A API não foi autorizada");
         }
 
-        $query = [
-            "access_token" => $this->auth->getAccessToken()
-        ];
+        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
 
         $resposta = $this->get($uri . $categoriaId, array(), $query);
 
