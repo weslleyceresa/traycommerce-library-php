@@ -33,7 +33,7 @@ class Categoria extends TrayEndpoints {
 
         $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
 
-        $resposta = $this->get($uri . $categoriaId, array(), $query);
+        $resposta = $this->get($uri, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
