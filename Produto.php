@@ -5,6 +5,23 @@ class Produto extends TrayEndpoints{
     public function __construct(\Auth $auth) {
         parent::__construct($auth);
     }
+
+    public function dados($productId){
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+
+        $resposta = $this->get(self::uri . $productId, array(), $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
     
     public function listagemCaracterísticasProdutos($filtros = array()){
         if (!$this->auth->estaAutorizado())
