@@ -34,11 +34,11 @@ class Cliente extends TrayEndpoints{
     
     /**
      * 
-     * @param int $productId
+     * @param int $customerId
      * @return object
      * @throws Exception/
      */
-    public function dados($productId){
+    public function dados($customerId){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -46,7 +46,7 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
 
-        $resposta = $this->get(self::uri . $productId, array(), $query);
+        $resposta = $this->get(self::uri . $customerId, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -147,11 +147,11 @@ class Cliente extends TrayEndpoints{
     
     /**
      * 
-     * @param int $productId
+     * @param int $customerId
      * @return object
      * @throws Exception
      */
-    public function atualizarDados($productId, $data = array()) {
+    public function atualizarDados($customerId, $data = array()) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -159,7 +159,7 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->put(self::uri . $productId, $data, $query);
+        $resposta = $this->put(self::uri . $customerId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
@@ -170,11 +170,11 @@ class Cliente extends TrayEndpoints{
     
     /**
      * 
-     * @param int $productId
+     * @param int $customerId
      * @return object
      * @throws Exception
      */
-    public function excluir($productId) {
+    public function excluir($customerId) {
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
@@ -182,7 +182,7 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->delete(self::uri . $productId, $data, $query);
+        $resposta = $this->delete(self::uri . $customerId, $data, $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
