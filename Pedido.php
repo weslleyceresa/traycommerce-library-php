@@ -1,6 +1,8 @@
 <?php
 class Pedido extends TrayEndpoints{
     const uri = "orders/";
+    const uri_status = "orders/statuses/";
+    const uri_tracking = "tracking_labels/";
     
     public function __construct(\Auth $auth) {
         parent::__construct($auth);
@@ -8,8 +10,8 @@ class Pedido extends TrayEndpoints{
     
     /**
      * 
-     * @param type $filtros
-     * @return type object     
+     * @param array $filtros
+     * @return object     
      * @throws Exception
      */
     public function listagem($filtros = array()) {
@@ -406,6 +408,163 @@ class Pedido extends TrayEndpoints{
         );
         
         $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, array(), $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /**
+     * 
+     * @param array $filtros
+     * @return object     
+     * @throws Exception
+     */
+    public function listagemStatus($filtros = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $query = array_merge($query, $filtros);
+
+        $resposta = $this->get(self::uri_status, array(), $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /**
+     * 
+     * @param int $statusId
+     * @return array object
+     * @throws Exception
+     */
+    public function dadosStatus($statusId) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+
+        $resposta = $this->get(self::uri_status . $statusId, array(), $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /*
+        $data["OrderStatus"]["status"] = "NOVO STATUS";
+        $data["OrderStatus"]["default"] = "0";
+     */
+    
+    /**
+     * 
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function cadastrarStatus($data = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $resposta = $this->post(self::uri_status, $data, $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /*
+        $data["OrderStatus"]["status"] = "STATUS ALTERADO";
+        $data["OrderStatus"]["default"] = "0";
+     */
+    
+    /**
+     * 
+     * @param int $statusId
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function atualizarDadosStatus($statusId, $data = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $resposta = $this->put(self::uri_status . $statusId, $data, $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /**
+     * 
+     * @param int $statusId
+     * @return object
+     * @throws Exception
+     */
+    public function excluirStatus($statusId) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $resposta = $this->delete(self::uri_status . $statusId, array(), $query);
+
+        if ($resposta["code"] == 200) {
+            return $resposta["data"];
+        }
+
+        return null;
+    }
+    
+    /*
+        $filtros["orders"] = "1,2,3,4";
+    */
+    
+    /**
+     * 
+     * @param array $filtros
+     * @return object
+     * @throws Exception
+     */
+    public function etiquetasMercadoLivre($filtros = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $query = array_merge($query, $filtros);
+        
+        $resposta = $this->get(self::uri_tracking, array(), $query);
 
         if ($resposta["code"] == 200) {
             return $resposta["data"];
