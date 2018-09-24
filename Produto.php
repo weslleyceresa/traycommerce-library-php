@@ -41,13 +41,15 @@ class Produto extends TrayEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados($productId){
+    public function dados($productId, $filtros = array()){
         if (!$this->auth->estaAutorizado())
             throw new Exception("A API não foi autorizada");
 
         $query = array(
             "access_token" => $this->auth->getAccessToken()
         );
+
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $productId, array(), $query);
 
