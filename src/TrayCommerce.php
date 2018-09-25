@@ -1,5 +1,7 @@
 <?php
 
+include "Helpers.php";
+
 class TrayCommerce {
 
     private $curl_error_codes = "";
