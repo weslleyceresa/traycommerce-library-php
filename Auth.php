@@ -74,7 +74,7 @@
 					}
 				}
 
-				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: " . $resposta["err"]." - ".implode(", ", $causes));
+				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: (".$resposta["code"].") " . $resposta["err"]." - ".implode(", ", $causes));
 			}
 
 			$this->base_url_api = $apiAddress;
