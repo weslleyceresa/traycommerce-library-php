@@ -137,6 +137,8 @@ class TrayCommerce {
 
         $url = $url . "?" . $params;
 
+        generateLog($url . " POST: " . http_build_query($postParams));
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -165,6 +167,8 @@ class TrayCommerce {
 
     private function curlPut($url, $postParams = array(), $getParams = array(), $type = "PUT") {
         $url = $url . "?" . http_build_query($getParams);
+
+        generateLog($url . " POST: " . http_build_query($postParams));
 
         $ch = curl_init();
 
