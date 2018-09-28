@@ -63,7 +63,7 @@
 				"code" => $code,
 			);
 
-			$resposta = $this->post("auth/", $data, $data);
+			$resposta = $this->post("auth/", $data, array());
 
 			if($resposta["code"] != "201" && $resposta["code"] != "200"){
 				$causes = array();
