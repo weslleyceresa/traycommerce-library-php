@@ -114,7 +114,7 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if ($resposta["code"] == 200 || $resposta["code"] == 201) {
             return $resposta["data"];
         }
 
