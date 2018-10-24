@@ -2,6 +2,7 @@
 class Cliente extends TrayEndpoints{
     const uri = "customers/";
     const uri_address = "customers/addresses/";
+    const uri_profile = "customers/profiles/";
     
     public function __construct(\Auth $auth) {
         parent::__construct($auth);
@@ -112,10 +113,25 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->put(self::uri, $data, $query);
+        $resposta = $this->post(self::uri, $data, $query);
 
         if ($resposta["code"] == 200 || $resposta["code"] == 201) {
             return $resposta["data"];
+        }
+        else{
+            $msg = "";
+
+            if($resposta["data"])
+                $msg = $resposta["data"]->name;
+
+            if($resposta["data"]->causes){
+                $causes = array();
+                foreach ($resposta["data"]->causes as $cause) {
+                    $causes[] = $cause;
+                }
+            }
+
+            throw new Exception("Erro ao cadastrar: " . $msg);
         }
 
         return null;
@@ -299,5 +315,24 @@ class Cliente extends TrayEndpoints{
         }
 
         return null;
+    }
+
+    /**
+     * 
+     * @param int $addressId
+     * @return object
+     * @throws Exception
+     */
+    public function relacionarPerfil($data = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $resposta = $this->post(self::uri_profile . "relation", $data, $query);
+
+        return $resposta["data"];
     }
 }

@@ -136,10 +136,12 @@ class TrayCommerce {
 
     private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST") {
         $params = http_build_query($getParams);
+        
+        $postParams = http_build_query($postParams);
 
         $url = $url . "?" . $params;
 
-        //generateLog($url . " POST: " . http_build_query($postParams));
+        //generateLog($url . " POST: " . $postParams);
 
         $ch = curl_init();
 
