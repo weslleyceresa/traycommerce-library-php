@@ -24,11 +24,11 @@ class Parceiro extends TrayEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -47,11 +47,11 @@ class Parceiro extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $partnerId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -76,11 +76,12 @@ class Parceiro extends TrayEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        
     }
     
     /*
@@ -105,11 +106,11 @@ class Parceiro extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $partnerId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -128,10 +129,10 @@ class Parceiro extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri . $partnerId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }

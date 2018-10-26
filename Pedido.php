@@ -26,11 +26,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -49,11 +49,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $orderId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -72,11 +72,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $orderId . "/complete", array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -123,11 +123,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -160,11 +160,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $orderId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -183,11 +183,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->put(self::uri . "cancel/" . $orderId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -206,11 +206,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri . $orderId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -231,11 +231,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->get(self::uri . "invoices", array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -255,11 +255,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -278,11 +278,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -315,11 +315,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->post(self::uri . $orderId . "/" . "invoices/", $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -353,11 +353,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -385,11 +385,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->post(self::uri . "includeProduct/" . $orderId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -409,11 +409,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -434,11 +434,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_status, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -457,11 +457,11 @@ class Pedido extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_status . $statusId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -485,11 +485,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->post(self::uri_status, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -514,11 +514,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_status . $statusId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -537,11 +537,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri_status . $statusId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -566,11 +566,11 @@ class Pedido extends TrayEndpoints{
         
         $resposta = $this->get(self::uri_tracking, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }
 ?>

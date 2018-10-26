@@ -65,16 +65,8 @@
 
 			$resposta = $this->post("auth/", $data, array());
 
-			if($resposta["code"] != "201" && $resposta["code"] != "200"){
-				$causes = array();
-
-				if($resposta["data"]){
-					foreach ($resposta["data"]->causes as $cause) {
-						$causes[] = $cause;
-					}
-				}
-
-				throw new Exception("[Auth] Problema com a autorização na Tray, detalhes: (".$resposta["code"].") " . $resposta["err"]." - ".implode(", ", $causes));
+			if(!success($resposta["code"])){
+				throw new TrayCommerceException($resposta["data"], $resposta["code"]);
 			}
 
 			$this->base_url_api = $apiAddress;
@@ -104,15 +96,15 @@
 		}
 
 		public function atualizarChaveAcesso(){
-			$post = array(
+			$query = array(
 				"refresh_token" => $this->getRefreshToken()
 			);
 
 			parent::setBaseUrlApi($this->getBaseUrlApi());
 
-			$resposta = $this->get("auth/", $post);
+			$resposta = $this->get("auth/", array(), $query);
 
-			if($resposta["code"] == "200" || $resposta["code"] == "201"){
+			if(success($resposta["code"])){
 				$this->access_token = $resposta["data"]->access_token;
 				$this->refresh_token = $resposta["data"]->refresh_token;
 				$this->date_expiration_access_token = strtotime($resposta["data"]->date_expiration_access_token);

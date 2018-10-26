@@ -24,11 +24,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -47,10 +47,10 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $pageId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }

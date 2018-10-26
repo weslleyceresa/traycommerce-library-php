@@ -1,5 +1,8 @@
 <?php
 
+include __DIR__ . "/Helpers.php";
+include __DIR__ . "/../Exceptions/TrayCommerceException.php";
+
 class TrayEndpoints extends TrayCommerce {
 
     protected $auth;

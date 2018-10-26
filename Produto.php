@@ -28,11 +28,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -53,11 +53,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $productId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -103,11 +103,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -139,11 +139,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $productId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -162,11 +162,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri . $productId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -187,11 +187,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_brands, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -210,11 +210,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_brands . $brandId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -238,11 +238,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_brands, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -267,11 +267,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_brands . $brandId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -290,11 +290,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri_brands . $brandId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -315,11 +315,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_properties, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -345,11 +345,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $productId . "/properties", $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -370,11 +370,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_solds, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -395,11 +395,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_variants, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -418,11 +418,11 @@ class Produto extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_variants . $variantId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -459,11 +459,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_variants, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -495,11 +495,11 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_variants . $variantId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -518,10 +518,10 @@ class Produto extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri_variants . $variantId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }

@@ -26,11 +26,11 @@ class Cliente extends TrayEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -49,11 +49,11 @@ class Cliente extends TrayEndpoints{
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -115,26 +115,11 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200 || $resposta["code"] == 201) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
-        else{
-            $msg = "";
 
-            if($resposta["data"])
-                $msg = $resposta["data"]->name;
-
-            if($resposta["data"]->causes){
-                $causes = array();
-                foreach ($resposta["data"]->causes as $cause) {
-                    $causes[] = $cause;
-                }
-            }
-
-            throw new Exception("Erro ao cadastrar: " . $msg);
-        }
-
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -177,11 +162,11 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->put(self::uri . $customerId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -200,11 +185,11 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri . $customerId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -225,11 +210,11 @@ class Cliente extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_address, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -248,11 +233,11 @@ class Cliente extends TrayEndpoints{
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -287,11 +272,11 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->put(self::uri_address, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -310,11 +295,11 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->delete(self::uri_address . $addressId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 
     /**
@@ -333,6 +318,10 @@ class Cliente extends TrayEndpoints{
         
         $resposta = $this->post(self::uri_profile . "relation", $data, $query);
 
-        return $resposta["data"];
+        if (success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }

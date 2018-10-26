@@ -23,11 +23,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->get(self::uri . $sessionId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -46,11 +46,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->get(self::uri . $sessionId . "/complete", array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -88,11 +88,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->post(self::uri, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -129,11 +129,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->put(self::uri . $sessionId, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -152,11 +152,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->put(self::uri . $sessionId, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -182,11 +182,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->get($url, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -218,11 +218,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->put($url, $data, $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -248,11 +248,11 @@ class CarrinhoCompra extends TrayEndpoints {
 
         $resposta = $this->delete($url, array(), $query);
 
-        if ($resposta["code"] == 200) {
+        if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        return null;
+        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
     }
 }
 ?>
