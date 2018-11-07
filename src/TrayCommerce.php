@@ -5,6 +5,9 @@ class TrayCommerce {
     private $curl_error_codes = "";
     private $base_url_api;
 
+    private $eventsBeforeSend = array();
+    private $eventsAfterSend = array();
+
     public function __construct() {
         $this->curl_error_codes = array(
             0 => 'NO_ERROR',
@@ -132,6 +135,32 @@ class TrayCommerce {
         );
     }
 
+    public function beforeSend($callback){
+        $this->eventsBeforeSend[] = $callback;
+        return $this;
+    }
+
+    public function afterSend($callback){
+        $this->eventsAfterSend[] = $callback;
+        return $this;
+    }
+
+    private function triggerEvent($time){
+        switch($time){
+            case "before":
+                foreach ($this->eventsBeforeSend as $callback) {
+                    $callback();
+                }
+            break;
+
+            case "after":
+                foreach ($this->eventsAfterSend as $callback) {
+                    $callback();
+                }
+            break;
+        }
+    }
+
     private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST") {
         $params = http_build_query($getParams);
         
@@ -140,6 +169,8 @@ class TrayCommerce {
         $url = $url . "?" . $params;
 
         //generateLog($url . " POST: " . $postParams);
+
+        $this->triggerEvent("before");
 
         $ch = curl_init();
 
@@ -159,6 +190,8 @@ class TrayCommerce {
 
         curl_close($ch);
 
+        $this->triggerEvent("after");
+
         return array(
             "responseText" => $jsonRetorno,
             "code" => $code,
@@ -171,6 +204,8 @@ class TrayCommerce {
         $url = $url . "?" . http_build_query($getParams);
 
         //generateLog($url . " POST: " . http_build_query($postParams));
+
+        $this->triggerEvent("before");
 
         $ch = curl_init();
 
@@ -193,6 +228,8 @@ class TrayCommerce {
         $err = curl_errno($ch);
 
         curl_close($ch);
+
+        $this->triggerEvent("after");
 
         return array(
             "responseText" => $jsonRetorno,

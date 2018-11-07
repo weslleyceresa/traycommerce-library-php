@@ -32,7 +32,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -57,7 +57,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dados]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -107,7 +107,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrar]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -143,7 +143,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -166,7 +166,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluir]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -191,7 +191,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemMarcas]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -214,7 +214,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosMarca]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -242,7 +242,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarMarca]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -271,7 +271,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosMarca]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -294,7 +294,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirMarca]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -319,7 +319,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemCaracterísticasProdutos]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -349,7 +349,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarCaracterísticasProdutos]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -374,7 +374,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemProdutosVendidos]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -399,7 +399,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemVariacoes]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -422,7 +422,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosVariacao]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -463,7 +463,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarVariacao]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -499,7 +499,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosVariacao]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -522,6 +522,6 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirVariacao]", $resposta["data"], $resposta["code"]);
     }
 }

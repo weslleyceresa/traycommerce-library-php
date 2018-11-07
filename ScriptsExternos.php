@@ -28,7 +28,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -55,7 +55,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][cadastrar]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -82,6 +82,6 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
 }

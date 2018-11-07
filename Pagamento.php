@@ -28,7 +28,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -51,7 +51,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][dados]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -82,7 +82,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][cadastrar]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -113,7 +113,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -136,7 +136,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][excluir]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -165,7 +165,7 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][opcoes]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -187,6 +187,6 @@ class Pagamento extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][configuracoes]", $resposta["data"], $resposta["code"]);
     }
 }

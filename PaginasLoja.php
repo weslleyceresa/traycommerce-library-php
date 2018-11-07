@@ -28,7 +28,7 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PaginasLoja][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -51,6 +51,6 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PaginasLoja][dados]", $resposta["data"], $resposta["code"]);
     }
 }

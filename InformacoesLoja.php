@@ -25,6 +25,6 @@ class Produto extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[InformacoesLoja][dados]", $resposta["data"], $resposta["code"]);
     }
 }

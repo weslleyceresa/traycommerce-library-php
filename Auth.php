@@ -66,7 +66,7 @@
 			$resposta = $this->post("auth/", $data, array());
 
 			if(!success($resposta["code"])){
-				throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+				throw new TrayCommerceException("[Auth][gerarChaveAcesso]", $resposta["data"], $resposta["code"]);
 			}
 
 			$this->base_url_api = $apiAddress;

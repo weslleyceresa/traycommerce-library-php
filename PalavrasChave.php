@@ -28,7 +28,7 @@ class PalavrasChave extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PalavrasChave][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -51,6 +51,6 @@ class PalavrasChave extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PalavrasChave][dados]", $resposta["data"], $resposta["code"]);
     }
 }

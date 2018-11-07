@@ -33,21 +33,28 @@
 	        }
 	    }
 	}
+
+	{
+	    
+	    "url": "//partners/?access_token=3d32b0b96196550f9aea3a9e5b30b678c6d5202a40129760d45fa41d89c5dc4a",
+	    "name": "Bad Request",
+	    "message": ""
+	}
 	*/
 
 	class TrayCommerceException extends Exception{
-		public function __construct($message, $code = 0, Exception $previous = null) {
-			$message = $this->process($message);
+		public function __construct($info, $message, $code = 0, Exception $previous = null) {
+			$message = $this->process($info, $message);
 			parent::__construct($message, $code, $previous);
 		}
 
-		private function process($message){
+		private function process($info, $message){
 			if(is_string($message))
-				return $message;
+				return $info." ".$message;
 
-			if($message->causes){
+			if(isset($message->causes)){
 				if(is_array($message->causes)){
-					return $message->name.", Causes: (".implode($message->causes).")";
+					return $info." ".$message->name.", Causes: (".implode($message->causes).")";
 				}
 
 				if(is_object($message->causes)){
@@ -59,14 +66,14 @@
 						$msg[] = $key.": ".implode(", ", $value);
 					}
 
-					return $message->name.", ".$objectName." causes: (".implode(" and ", $msg).")";
+					return $info." ".$message->name.", ".$objectName." causes: (".implode(" and ", $msg).")";
 				}
 			}
+			elseif(isset($message->message)){
+				return $info." ".$message->name.", Causes: (".$message->message.")";
+			}
+			
+			return $info." ".$message->name.", Causes: (not explained)";
 		}
-
-		// personaliza a apresentação do objeto como string
-	    public function __toString() {
-	        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
-	    }
 	}
 ?>

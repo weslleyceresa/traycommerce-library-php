@@ -30,7 +30,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -53,7 +53,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -70,13 +70,15 @@ class Pedido extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
 
+        $query = array_merge($query, $this->attrs);
+
         $resposta = $this->get(self::uri . $orderId . "/complete", array(), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dadosCompleto]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -127,7 +129,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrar]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -164,7 +166,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -187,7 +189,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cancelar]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -210,7 +212,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluir]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -235,7 +237,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagemNotasFiscais]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -259,7 +261,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][consultarDadosNotaFiscal]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -282,7 +284,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][consultarNotaPorPedido]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -319,7 +321,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrarNotaFiscal]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -357,7 +359,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarNotaFiscal]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -389,7 +391,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][incluirProduto]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -413,7 +415,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluirProduto]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -438,7 +440,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagemStatus]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -461,7 +463,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dadosStatus]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -489,7 +491,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrarStatus]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -518,7 +520,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarDadosStatus]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -541,7 +543,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluirStatus]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -570,7 +572,7 @@ class Pedido extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][etiquetasMercadoLivre]", $resposta["data"], $resposta["code"]);
     }
 }
 ?>

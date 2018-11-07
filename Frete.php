@@ -28,7 +28,7 @@ class Frete extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Frete][listagemFormasEnvio]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -63,6 +63,6 @@ class Frete extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Frete][calculo]", $resposta["data"], $resposta["code"]);
     }
 }

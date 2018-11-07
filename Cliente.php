@@ -3,9 +3,52 @@ class Cliente extends TrayEndpoints{
     const uri = "customers/";
     const uri_address = "customers/addresses/";
     const uri_profile = "customers/profiles/";
+
+    const GENDER_MASCULINO = "0";
+    const GENDER_FEMININO = "0";
+
+    const TYPE_PESSOA_FISICA = "0";
+    const TYPE_PESSOA_JURIDICA = "1";
+
+    const BLOCKED_CLIENTE_DESBLOQUEADO = "0";
+    const BLOCKED_CLIENTE_BLOQUEADO = "1";
+
+    const ADDRESS_TYPE_COBRANCA = "0";
+    const ADDRESS_TYPE_ENTREGA = "1";
+
+    const ADDRESS_ACTIVE_INDISPONIVEL = "0";
+    const ADDRESS_ACTIVE_DISPONIVEL = "1";
     
     public function __construct(\Auth $auth) {
         parent::__construct($auth);
+    }
+
+    /*
+        $data["email"] = "email@email.com";
+        $data["password"] = "*****";
+     */
+    
+    /**
+     * 
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function login($data = array()) {
+        if (!$this->auth->estaAutorizado())
+            throw new Exception("A API não foi autorizada");
+
+        $query = array(
+            "access_token" => $this->auth->getAccessToken()
+        );
+        
+        $resposta = $this->post(self::uri . "login", $data, $query);
+
+        if (success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException("[Cliente][login]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -30,7 +73,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][listagem]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -53,7 +96,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][dados]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -119,7 +162,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][cadastrar]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -166,7 +209,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -189,7 +232,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][excluir]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -214,7 +257,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][listagemEnderecos]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -237,7 +280,7 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][dadosEndereco]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -270,13 +313,13 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->put(self::uri_address, $data, $query);
+        $resposta = $this->post(self::uri_address, $data, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][cadastrarEndereco]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -293,13 +336,13 @@ class Cliente extends TrayEndpoints{
             "access_token" => $this->auth->getAccessToken()
         );
         
-        $resposta = $this->delete(self::uri_address . $addressId, $data, $query);
+        $resposta = $this->delete(self::uri_address . $addressId, array(), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][excluirEndereco]", $resposta["data"], $resposta["code"]);
     }
 
     /**
@@ -322,6 +365,6 @@ class Cliente extends TrayEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][relacionarPerfil]", $resposta["data"], $resposta["code"]);
     }
 }

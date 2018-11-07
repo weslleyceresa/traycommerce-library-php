@@ -27,7 +27,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -50,7 +50,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarCompleto]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -92,7 +92,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][criarNovo]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -133,7 +133,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][atualizarDados]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -156,7 +156,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][excluir]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -186,7 +186,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarProduto]", $resposta["data"], $resposta["code"]);
     }
     
     /*
@@ -222,7 +222,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][atualizarProduto]", $resposta["data"], $resposta["code"]);
     }
     
     /**
@@ -252,7 +252,7 @@ class CarrinhoCompra extends TrayEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException($resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][excluirProduto]", $resposta["data"], $resposta["code"]);
     }
 }
 ?>
