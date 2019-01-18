@@ -5,36 +5,52 @@ Biblioteca PHP v5.6 para manipulação da API da Tray
 
 ```php
 <?php
+
+use Traycommerce\CarrinhoCompra;
+use Traycommerce\Library\TrayCommerceController;
+use Traycommerce\Pedido;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 date_default_timezone_set('America/Sao_Paulo');
 
-include "./src/TrayCommerce.php";
-include "./src/TrayEndpoints.php";
-include "./Auth.php";
-include "./CarrinhoCompra.php";
+//criar instancia do controlador da api
+$trayCommerceController = TrayCommerceController::getInstance();
 
-try {
+//carregar informações do controlador
+$trayCommerceController
+        ->setConsumerKey("")
+        ->setConsumerSecret("")
+        ->setCallBackUrl("")
+        ->setStoreUrl("");
 
-    $auth = new Auth(array(
-        "callback" => "http://xxxxxxxxxxxxx/index.php",
-        "consumer_key" => "xxxxxxxxxxxxxxxxxxxx",
-        "consumer_secret" => "xxxxxxxxxxxxxxxxxxxxxxxx",
-        "store_url" => "https://www.xxxxxxxxxx.com.br/",
-    ));
-
-    if (isset($_GET["code"])) {
-        $auth->gerarChaveAcesso($_GET["code"], $_GET["api_address"]);
-
-        $carrinho = new CarrinhoCompra($auth);
-
-        echo '<pre>';
-        print_r($carrinho->consultarDados("c8qk221u7bn3pu8qngh2bhcc46"));
-        echo '</pre>';
-    } else {
-        $auth->solicitarAutorizacao();
-    }
-} catch (Exception $ex) {
-    print_r($ex);
+//verificar se a loja ja autorizou a aplicação e 
+//setar as configurações de autorização
+if($_GET["code"]){
+    $trayCommerceController
+            ->setCode($_GET["code"])
+            ->setApiUrl($_GET["base_url_api"]);
 }
+
+//autorizar a aplicação para gerar um token
+$trayCommerceController->authorizeApplication();
+
+$trayCommerceController->onBeforeRefreshToken(function($currentToken){
+    
+});
+
+$trayCommerceController->onRefreshedToken(function($newToken){
+    
+});
+
+//somente apos os passos anteriores carregar os metodos da api
+$apiCarrinhoCompra = new CarrinhoCompra();
+
+$cartData = $apiCarrinhoCompra->consultarDados("asdsdasdad");
+
+$apiCarrinhoCompra->atualizarDados();
+
+$apiPedido = new Pedido();
+
+$apiPedido->atualizarDados($orderId);
 ```
