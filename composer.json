@@ -1,0 +1,26 @@
+{
+    "name": "traycommerce/traycommerce",
+    "description": "Library da api privada da Tray",
+    "keywords": ["api", "library", "psr-3", "traycommerce"],
+    "homepage": "https://github.com/weslleyceresa/traycommerce-library-php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Weslley Ceresa",
+            "email": "weslley@fivesdev.com",
+            "homepage": "https://fivesdev.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Traycommerce\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": []
+    }
+}

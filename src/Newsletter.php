@@ -1,9 +1,17 @@
 <?php
-class Produto extends TrayEndpoints{
+namespace Traycommerce;
+
+use Exception;
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Produto extends BaseEndpoints{
     const uri = "newsletter/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -13,11 +21,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -43,11 +50,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -70,11 +76,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function confirmar($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->post(self::uri . "confirmation/", $data, $query);

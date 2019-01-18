@@ -1,9 +1,17 @@
 <?php
-class Pagamento extends TrayEndpoints{
+namespace Traycommerce;
+
+use Exception;
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Pagamento extends BaseEndpoints{
     const uri = "payments/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -13,11 +21,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -38,11 +45,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception/
      */
     public function dados($paymentId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $paymentId, array(), $query);
@@ -69,11 +75,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -100,11 +105,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception
      */
     public function atualizarDados($paymentId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $paymentId, $data, $query);
@@ -123,11 +127,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception
      */
     public function excluir($paymentId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $paymentId, $data, $query);
@@ -150,11 +153,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception/
      */
     public function opcoes($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -174,11 +176,10 @@ class Pagamento extends TrayEndpoints{
      * @throws Exception/
      */
     public function configuracoes(){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . "settings", array(), $query);

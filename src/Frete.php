@@ -1,9 +1,16 @@
 <?php
-class Frete extends TrayEndpoints{
+namespace Traycommerce;
+
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Frete extends BaseEndpoints{
     const uri = "shippings/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -13,11 +20,10 @@ class Frete extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagemFormasEnvio($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -48,11 +54,10 @@ class Frete extends TrayEndpoints{
      * @throws Exception/
      */
     public function calculo($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);

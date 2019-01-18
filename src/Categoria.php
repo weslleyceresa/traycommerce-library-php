@@ -1,19 +1,28 @@
 <?php
+namespace Traycommerce;
 
-class Categoria extends TrayEndpoints {
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Categoria extends BaseEndpoints {
 
     const uri = "categories/";
+    const uri_tree = "categories/tree/";
 
-    public function __construct(Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
 
     public function consultarCategorias($filtros = []) {
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
+        $this->checkValidToken();
 
-        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
+
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri, array(), $query);
 
@@ -25,15 +34,15 @@ class Categoria extends TrayEndpoints {
     }
 
     public function consultarArvoreCategorias($filtros = []) {
-        $uri = self::uri . "tree/";
+        $this->checkValidToken();
 
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
 
-        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
+        $query = array_merge($query, $filtros);
 
-        $resposta = $this->get($uri, array(), $query);
+        $resposta = $this->get(self::uri_tree, array(), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -43,11 +52,13 @@ class Categoria extends TrayEndpoints {
     }
 
     public function consultarDadosCategoria($categoriaId, $filtros = []) {
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
+        $this->checkValidToken();
 
-        $query = array_merge(["access_token" => $this->auth->getAccessToken()], $filtros);
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
+
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $categoriaId, array(), $query);
 
@@ -59,13 +70,11 @@ class Categoria extends TrayEndpoints {
     }
 
     public function cadastrarCategoria($data = []) {
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
-        
-        $query = [
-            "access_token" => $this->auth->getAccessToken()
-        ];
+        $this->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
         
         $resposta = $this->post(self::uri, $data, $query);
 
@@ -77,13 +86,11 @@ class Categoria extends TrayEndpoints {
     }
     
     public function atualizarCategoria($data = []) {
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
-        
-        $query = [
-            "access_token" => $this->auth->getAccessToken()
-        ];
+        $this->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
         
         $resposta = $this->put(self::uri, $data, $query);
 
@@ -95,13 +102,11 @@ class Categoria extends TrayEndpoints {
     }
     
     public function excluirCategoria($idCategoria) {
-        if (!$this->auth->estaAutorizado()) {
-            throw new Exception("A API não foi autorizada");
-        }
-        
-        $query = [
-            "access_token" => $this->auth->getAccessToken()
-        ];
+        $this->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->token->getAccess_token()
+        );
         
         $resposta = $this->delete(self::uri, array(), $query);
         

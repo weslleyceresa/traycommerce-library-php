@@ -1,13 +1,21 @@
 <?php
-class Produto extends TrayEndpoints{
+namespace Traycommerce;
+
+use Exception;
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Produto extends BaseEndpoints{
     const uri = "products/";
     const uri_brands = "products/brands/";
     const uri_properties = "products/properties/";
     const uri_solds = "products_solds/";
     const uri_variants = "products/variants/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -17,11 +25,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -42,11 +49,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function dados($productId, $filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $query = array_merge($query, $filtros);
@@ -94,11 +100,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -130,11 +135,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function atualizarDados($productId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $productId, $data, $query);
@@ -153,11 +157,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function excluir($productId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $productId, $data, $query);
@@ -176,11 +179,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function listagemMarcas($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -201,11 +203,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function dadosMarca($brandId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri_brands . $brandId, array(), $query);
@@ -229,11 +230,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrarMarca($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_brands, $data, $query);
@@ -258,11 +258,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function atualizarDadosMarca($brandId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_brands . $brandId, $data, $query);
@@ -281,11 +280,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function excluirMarca($brandId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_brands . $brandId, $data, $query);
@@ -304,11 +302,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function listagemCaracterísticasProdutos($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -336,14 +333,13 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrarCaracterísticasProdutos($productId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
-        $resposta = $this->put(self::uri . $productId . "/properties", $data, $query);
+        $resposta = $this->post(self::uri . $productId . "/properties", $data, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -359,11 +355,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagemProdutosVendidos($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -384,11 +379,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagemVariacoes($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -409,11 +403,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function dadosVariacao($variantId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri_variants . $variantId, array(), $query);
@@ -450,11 +443,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrarVariacao($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_variants, $data, $query);
@@ -486,11 +478,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function atualizarDadosVariacao($variantId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_variants . $variantId, $data, $query);
@@ -509,11 +500,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception
      */
     public function excluirVariacao($variantId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_variants . $variantId, $data, $query);

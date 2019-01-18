@@ -1,9 +1,11 @@
 <?php
-class PalavrasChave extends TrayEndpoints{
+namespace Traycommerce;
+
+class PalavrasChave extends BaseEndpoints{
     const uri = "words/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -13,11 +15,10 @@ class PalavrasChave extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -38,11 +39,10 @@ class PalavrasChave extends TrayEndpoints{
      * @throws Exception/
      */
     public function dados($wordId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $wordId, array(), $query);

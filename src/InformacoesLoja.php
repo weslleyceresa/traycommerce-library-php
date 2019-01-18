@@ -1,9 +1,16 @@
 <?php
-class Produto extends TrayEndpoints{
+namespace Traycommerce;
+
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Produto extends BaseEndpoints{
     const uri = "info/";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
     
     /**
@@ -12,11 +19,10 @@ class Produto extends TrayEndpoints{
      * @throws Exception/
      */
     public function dados(){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri, array(), $query);

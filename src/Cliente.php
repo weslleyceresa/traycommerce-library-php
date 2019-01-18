@@ -1,5 +1,13 @@
 <?php
-class Cliente extends TrayEndpoints{
+namespace Traycommerce;
+
+use Exception;
+use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
+class Cliente extends BaseEndpoints{
     const uri = "customers/";
     const uri_address = "customers/addresses/";
     const uri_profile = "customers/profiles/";
@@ -19,8 +27,8 @@ class Cliente extends TrayEndpoints{
     const ADDRESS_ACTIVE_INDISPONIVEL = "0";
     const ADDRESS_ACTIVE_DISPONIVEL = "1";
     
-    public function __construct(\Auth $auth) {
-        parent::__construct($auth);
+    public function __construct(Token $token) {
+        parent::__construct($token);
     }
 
     /*
@@ -35,11 +43,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function login($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->post(self::uri . "login", $data, $query);
@@ -58,11 +65,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -83,11 +89,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception/
      */
     public function dados($customerId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
@@ -149,11 +154,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -196,11 +200,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function atualizarDados($customerId, $data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $customerId, $data, $query);
@@ -219,11 +222,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function excluir($customerId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $customerId, $data, $query);
@@ -242,11 +244,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception/
      */
     public function listagemEnderecos($filtros = array()){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -267,11 +268,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception/
      */
     public function dadosEndereco($addressId){
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
@@ -306,11 +306,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function cadastrarEndereco($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->post(self::uri_address, $data, $query);
@@ -329,11 +328,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function excluirEndereco($addressId) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_address . $addressId, array(), $query);
@@ -352,11 +350,10 @@ class Cliente extends TrayEndpoints{
      * @throws Exception
      */
     public function relacionarPerfil($data = array()) {
-        if (!$this->auth->estaAutorizado())
-            throw new Exception("A API não foi autorizada");
+        $this->checkValidToken();
 
         $query = array(
-            "access_token" => $this->auth->getAccessToken()
+            "access_token" => $this->token->getAccess_token()
         );
         
         $resposta = $this->post(self::uri_profile . "relation", $data, $query);
