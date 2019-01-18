@@ -2,7 +2,6 @@
 namespace Traycommerce;
 
 use Exception;
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -10,8 +9,8 @@ use function success;
 class Pagamento extends BaseEndpoints{
     const uri = "payments/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -21,10 +20,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -45,10 +44,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception/
      */
     public function dados($paymentId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . $paymentId, array(), $query);
@@ -75,10 +74,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -105,10 +104,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDados($paymentId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri . $paymentId, $data, $query);
@@ -127,10 +126,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception
      */
     public function excluir($paymentId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri . $paymentId, $data, $query);
@@ -153,10 +152,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception/
      */
     public function opcoes($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -176,10 +175,10 @@ class Pagamento extends BaseEndpoints{
      * @throws Exception/
      */
     public function configuracoes(){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . "settings", array(), $query);

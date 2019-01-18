@@ -1,7 +1,6 @@
 <?php
 namespace Traycommerce;
 
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -9,8 +8,8 @@ use function success;
 class Frete extends BaseEndpoints{
     const uri = "shippings/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -20,10 +19,10 @@ class Frete extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagemFormasEnvio($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -54,10 +53,10 @@ class Frete extends BaseEndpoints{
      * @throws Exception/
      */
     public function calculo($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);

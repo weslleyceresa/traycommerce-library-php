@@ -1,7 +1,6 @@
 <?php
 namespace Traycommerce;
 
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -9,8 +8,8 @@ use function success;
 class Produto extends BaseEndpoints{
     const uri = "custom_pages/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -20,10 +19,10 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -44,10 +43,10 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function dados($pageId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . $pageId, array(), $query);

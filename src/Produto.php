@@ -2,7 +2,6 @@
 namespace Traycommerce;
 
 use Exception;
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -14,8 +13,8 @@ class Produto extends BaseEndpoints{
     const uri_solds = "products_solds/";
     const uri_variants = "products/variants/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -25,7 +24,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -49,7 +48,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function dados($productId, $filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -100,7 +99,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -135,7 +134,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDados($productId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -157,7 +156,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function excluir($productId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -179,7 +178,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function listagemMarcas($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -203,7 +202,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function dadosMarca($brandId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -230,7 +229,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarMarca($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -258,7 +257,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDadosMarca($brandId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -280,7 +279,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function excluirMarca($brandId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -302,7 +301,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function listagemCaracterísticasProdutos($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -333,7 +332,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarCaracterísticasProdutos($productId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -355,7 +354,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagemProdutosVendidos($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -379,7 +378,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagemVariacoes($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -403,7 +402,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function dadosVariacao($variantId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -443,7 +442,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarVariacao($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -478,7 +477,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDadosVariacao($variantId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
@@ -500,7 +499,7 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function excluirVariacao($variantId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()

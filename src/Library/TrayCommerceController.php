@@ -80,7 +80,7 @@ class TrayCommerceController {
             if(empty($this->getCode()))
                 throw new Exception("");
             
-            $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $code, $apiAddress);
+            $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
             
         } catch (Exception $ex) {
             $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());

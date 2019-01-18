@@ -1,8 +1,6 @@
 <?php
 namespace Traycommerce;
 
-use Exception;
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -27,8 +25,8 @@ class Cliente extends BaseEndpoints{
     const ADDRESS_ACTIVE_INDISPONIVEL = "0";
     const ADDRESS_ACTIVE_DISPONIVEL = "1";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
 
     /*
@@ -43,10 +41,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function login($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri . "login", $data, $query);
@@ -65,10 +63,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -89,10 +87,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception/
      */
     public function dados($customerId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
@@ -154,10 +152,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -200,10 +198,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDados($customerId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri . $customerId, $data, $query);
@@ -222,10 +220,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function excluir($customerId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri . $customerId, $data, $query);
@@ -244,10 +242,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagemEnderecos($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -268,10 +266,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception/
      */
     public function dadosEndereco($addressId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
@@ -306,10 +304,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarEndereco($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri_address, $data, $query);
@@ -328,10 +326,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function excluirEndereco($addressId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri_address . $addressId, array(), $query);
@@ -350,10 +348,10 @@ class Cliente extends BaseEndpoints{
      * @throws Exception
      */
     public function relacionarPerfil($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri_profile . "relation", $data, $query);

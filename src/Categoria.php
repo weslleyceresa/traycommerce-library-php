@@ -1,7 +1,6 @@
 <?php
 namespace Traycommerce;
 
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -11,15 +10,15 @@ class Categoria extends BaseEndpoints {
     const uri = "categories/";
     const uri_tree = "categories/tree/";
 
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function consultarCategorias($filtros = []) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $query = array_merge($query, $filtros);
@@ -34,10 +33,10 @@ class Categoria extends BaseEndpoints {
     }
 
     public function consultarArvoreCategorias($filtros = []) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $query = array_merge($query, $filtros);
@@ -52,10 +51,10 @@ class Categoria extends BaseEndpoints {
     }
 
     public function consultarDadosCategoria($categoriaId, $filtros = []) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $query = array_merge($query, $filtros);
@@ -70,10 +69,10 @@ class Categoria extends BaseEndpoints {
     }
 
     public function cadastrarCategoria($data = []) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -86,10 +85,10 @@ class Categoria extends BaseEndpoints {
     }
     
     public function atualizarCategoria($data = []) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -102,10 +101,10 @@ class Categoria extends BaseEndpoints {
     }
     
     public function excluirCategoria($idCategoria) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri, array(), $query);

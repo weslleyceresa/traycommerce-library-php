@@ -1,11 +1,15 @@
 <?php
 namespace Traycommerce;
 
+use Traycommerce\Exceptions\TrayCommerceException;
+use Traycommerce\Library\BaseEndpoints;
+use function success;
+
 class PalavrasChave extends BaseEndpoints{
     const uri = "words/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -15,10 +19,10 @@ class PalavrasChave extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -39,10 +43,10 @@ class PalavrasChave extends BaseEndpoints{
      * @throws Exception/
      */
     public function dados($wordId){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . $wordId, array(), $query);

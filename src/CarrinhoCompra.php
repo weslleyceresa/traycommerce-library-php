@@ -1,10 +1,8 @@
 <?php
 namespace Traycommerce;
 
-use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
-use Traycommerce\Library\HttpTray;
-use Traycommerce\Library\TrayCommerceController;
+use Traycommerce\Library\BaseEndpoints;
 use function success;
 
 class CarrinhoCompra extends BaseEndpoints {

@@ -7,7 +7,8 @@ use Traycommerce\Library\HttpTray;
 use function success;
 
 class Auth extends HttpTray {
-    const uri = "auth/";    
+    const uri_authorize = "auth.php"; 
+    const uri = "auth/";
     
     public function __construct() {
         parent::__construct();
@@ -20,7 +21,7 @@ class Auth extends HttpTray {
             "callback" => $callbackUrl
         );
 
-        header("Location: " . $storeUrl . self::uri . "?" . http_build_query($get));
+        header("Location: " . $storeUrl . self::uri_authorize . "?" . http_build_query($get));
     }
 
     public function gerarChaveAcesso($consumerKey, $consumerSecret, $code, $apiAddress) {

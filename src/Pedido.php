@@ -2,7 +2,6 @@
 namespace Traycommerce;
 
 use Exception;
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -12,8 +11,8 @@ class Pedido extends BaseEndpoints{
     const uri_status = "orders/statuses/";
     const uri_tracking = "tracking_labels/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -23,10 +22,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function listagem($filtros = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -47,10 +46,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function dados($orderId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri . $orderId, array(), $query);
@@ -69,10 +68,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function dadosCompleto($orderId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $query = array_merge($query, $this->attrs);
@@ -121,10 +120,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -157,10 +156,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDados($orderId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri . $orderId, $data, $query);
@@ -179,10 +178,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function cancelar($orderId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->put(self::uri . "cancel/" . $orderId, array(), $query);
@@ -201,10 +200,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function excluir($orderId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri . $orderId, array(), $query);
@@ -223,10 +222,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function listagemNotasFiscais($filtros = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -248,10 +247,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function consultarDadosNotaFiscal($orderId, $invoiceId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, array(), $query);
@@ -270,10 +269,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function consultarNotaPorPedido($orderId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", array(), $query);
@@ -306,10 +305,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarNotaFiscal($orderId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri . $orderId . "/" . "invoices/", $data, $query);
@@ -343,10 +342,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarNotaFiscal($orderId, $invoiceId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $data, $query);
@@ -374,10 +373,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function incluirProduto($orderId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri . "includeProduct/" . $orderId, $data, $query);
@@ -397,10 +396,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function excluirProduto($orderId, $productId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, array(), $query);
@@ -419,10 +418,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function listagemStatus($filtros = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -443,10 +442,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function dadosStatus($statusId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
 
         $resposta = $this->get(self::uri_status . $statusId, array(), $query);
@@ -470,10 +469,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrarStatus($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri_status, $data, $query);
@@ -498,10 +497,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function atualizarDadosStatus($statusId, $data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri_status . $statusId, $data, $query);
@@ -520,10 +519,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function excluirStatus($statusId) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->delete(self::uri_status . $statusId, array(), $query);
@@ -546,10 +545,10 @@ class Pedido extends BaseEndpoints{
      * @throws Exception
      */
     public function etiquetasMercadoLivre($filtros = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);

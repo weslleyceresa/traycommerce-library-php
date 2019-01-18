@@ -2,7 +2,6 @@
 namespace Traycommerce;
 
 use Exception;
-use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
@@ -10,8 +9,8 @@ use function success;
 class Produto extends BaseEndpoints{
     const uri = "newsletter/";
     
-    public function __construct(Token $token) {
-        parent::__construct($token);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -21,10 +20,10 @@ class Produto extends BaseEndpoints{
      * @throws Exception/
      */
     public function listagem($filtros = array()){
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $query = array_merge($query, $filtros);
@@ -50,10 +49,10 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function cadastrar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -76,10 +75,10 @@ class Produto extends BaseEndpoints{
      * @throws Exception
      */
     public function confirmar($data = array()) {
-        $this->checkValidToken();
+        $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()
         );
         
         $resposta = $this->post(self::uri . "confirmation/", $data, $query);
