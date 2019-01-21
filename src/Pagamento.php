@@ -19,7 +19,7 @@ class Pagamento extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagem($filtros = array()){
+    public function listagem(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -43,12 +43,14 @@ class Pagamento extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados($paymentId){
+    public function dados($paymentId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $paymentId, array(), $query);
 
@@ -151,7 +153,7 @@ class Pagamento extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function opcoes($filtros = array()){
+    public function opcoes(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(

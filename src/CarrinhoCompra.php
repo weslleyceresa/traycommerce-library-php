@@ -18,12 +18,14 @@ class CarrinhoCompra extends BaseEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function consultarDados($sessionId) {
+    public function consultarDados($sessionId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $sessionId, array(), $query);
 

@@ -62,7 +62,7 @@ class Cliente extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagem($filtros = array()){
+    public function listagem(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -86,12 +86,14 @@ class Cliente extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados($customerId){
+    public function dados($customerId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
 
@@ -241,7 +243,7 @@ class Cliente extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagemEnderecos($filtros = array()){
+    public function listagemEnderecos(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -265,12 +267,14 @@ class Cliente extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dadosEndereco($addressId){
+    public function dadosEndereco($addressId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
 

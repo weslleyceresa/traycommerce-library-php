@@ -19,7 +19,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagem($filtros = array()){
+    public function listagem(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(

@@ -17,12 +17,14 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados(){
+    public function dados(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri, array(), $query);
 

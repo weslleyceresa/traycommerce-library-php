@@ -23,7 +23,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagem($filtros = array()){
+    public function listagem(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -47,7 +47,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados($productId, $filtros = array()){
+    public function dados($productId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -177,7 +177,7 @@ class Produto extends BaseEndpoints{
      * @return object 
      * @throws Exception
      */
-    public function listagemMarcas($filtros = array()){
+    public function listagemMarcas(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -201,12 +201,14 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dadosMarca($brandId){
+    public function dadosMarca($brandId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_brands . $brandId, array(), $query);
 
@@ -300,7 +302,7 @@ class Produto extends BaseEndpoints{
      * @return object 
      * @throws Exception
      */
-    public function listagemCaracterísticasProdutos($filtros = array()){
+    public function listagemCaracterísticasProdutos(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -353,7 +355,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagemProdutosVendidos($filtros = array()){
+    public function listagemProdutosVendidos(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -377,7 +379,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagemVariacoes($filtros = array()){
+    public function listagemVariacoes(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -401,12 +403,14 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dadosVariacao($variantId){
+    public function dadosVariacao($variantId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->token->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_variants . $variantId, array(), $query);
 

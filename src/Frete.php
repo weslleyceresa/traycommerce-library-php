@@ -18,7 +18,7 @@ class Frete extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagemFormasEnvio($filtros = array()){
+    public function listagemFormasEnvio(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -52,7 +52,7 @@ class Frete extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function calculo($filtros = array()){
+    public function calculo(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(

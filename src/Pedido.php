@@ -21,7 +21,7 @@ class Pedido extends BaseEndpoints{
      * @return object     
      * @throws Exception
      */
-    public function listagem($filtros = array()) {
+    public function listagem(array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -45,12 +45,14 @@ class Pedido extends BaseEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function dados($orderId) {
+    public function dados($orderId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $orderId, array(), $query);
 
@@ -221,7 +223,7 @@ class Pedido extends BaseEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function listagemNotasFiscais($filtros = array()) {
+    public function listagemNotasFiscais(array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -246,12 +248,14 @@ class Pedido extends BaseEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function consultarDadosNotaFiscal($orderId, $invoiceId) {
+    public function consultarDadosNotaFiscal($orderId, $invoiceId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, array(), $query);
 
@@ -268,12 +272,14 @@ class Pedido extends BaseEndpoints{
      * @return type object
      * @throws Exception
      */
-    public function consultarNotaPorPedido($orderId) {
+    public function consultarNotaPorPedido($orderId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", array(), $query);
 
@@ -417,7 +423,7 @@ class Pedido extends BaseEndpoints{
      * @return object     
      * @throws Exception
      */
-    public function listagemStatus($filtros = array()) {
+    public function listagemStatus(array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -441,12 +447,14 @@ class Pedido extends BaseEndpoints{
      * @return array object
      * @throws Exception
      */
-    public function dadosStatus($statusId) {
+    public function dadosStatus($statusId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_status . $statusId, array(), $query);
 
@@ -544,7 +552,7 @@ class Pedido extends BaseEndpoints{
      * @return object
      * @throws Exception
      */
-    public function etiquetasMercadoLivre($filtros = array()) {
+    public function etiquetasMercadoLivre(array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(

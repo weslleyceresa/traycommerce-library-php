@@ -14,7 +14,7 @@ class Categoria extends BaseEndpoints {
         parent::__construct();
     }
 
-    public function consultarCategorias($filtros = []) {
+    public function consultarCategorias(array $filtros = []) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -32,7 +32,7 @@ class Categoria extends BaseEndpoints {
         throw new TrayCommerceException("[Categoria][consultarCategorias]", $resposta["data"], $resposta["code"]);
     }
 
-    public function consultarArvoreCategorias($filtros = []) {
+    public function consultarArvoreCategorias(array $filtros = []) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -50,7 +50,7 @@ class Categoria extends BaseEndpoints {
         throw new TrayCommerceException("[Categoria][consultarArvoreCategorias]", $resposta["data"], $resposta["code"]);
     }
 
-    public function consultarDadosCategoria($categoriaId, $filtros = []) {
+    public function consultarDadosCategoria($categoriaId, array $filtros = []) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(

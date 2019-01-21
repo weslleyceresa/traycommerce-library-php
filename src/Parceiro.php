@@ -19,7 +19,7 @@ class Parceiro extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function listagem($filtros = array()){
+    public function listagem(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -43,12 +43,14 @@ class Parceiro extends BaseEndpoints{
      * @return object
      * @throws Exception/
      */
-    public function dados($partnerId){
+    public function dados($partnerId, array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri . $partnerId, array(), $query);
 
