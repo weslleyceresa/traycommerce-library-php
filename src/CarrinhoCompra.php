@@ -22,7 +22,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $sessionId, array(), $query);
@@ -44,7 +44,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $sessionId . "/complete", array(), $query);
@@ -85,7 +85,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->post(self::uri, $data, $query);
@@ -125,7 +125,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->put(self::uri . $sessionId, $data, $query);
@@ -147,7 +147,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->delete(self::uri . $sessionId, array(), $query);
@@ -171,7 +171,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $url = self::uri . $sessionId . "/" . $productId;
@@ -206,7 +206,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $url = self::uri . $sessionId . "/" . $productId;
@@ -235,7 +235,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $url = self::uri . $sessionId . "/" . $productId;

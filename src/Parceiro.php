@@ -23,7 +23,7 @@ class Parceiro extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -47,7 +47,7 @@ class Parceiro extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $partnerId, array(), $query);
@@ -75,7 +75,7 @@ class Parceiro extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -104,7 +104,7 @@ class Parceiro extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $partnerId, $data, $query);
@@ -126,7 +126,7 @@ class Parceiro extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $partnerId, $data, $query);

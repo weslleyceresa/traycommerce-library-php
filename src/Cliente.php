@@ -44,7 +44,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri . "login", $data, $query);
@@ -66,7 +66,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -90,7 +90,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
@@ -155,7 +155,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -201,7 +201,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $customerId, $data, $query);
@@ -223,7 +223,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $customerId, $data, $query);
@@ -245,7 +245,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -269,7 +269,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
@@ -307,7 +307,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri_address, $data, $query);
@@ -329,7 +329,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_address . $addressId, array(), $query);
@@ -351,7 +351,7 @@ class Cliente extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri_profile . "relation", $data, $query);

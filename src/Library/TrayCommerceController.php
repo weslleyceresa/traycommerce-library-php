@@ -35,10 +35,10 @@ class TrayCommerceController {
             $this->triggerEvent("beforeRefreshToken");
             
             if($this->token->isValid() == Token::VALID_REFRESH_TOKEN){
-                $this->token = $auth->atualizarChaveAcesso($this->token);
+                $this->token = $auth->atualizarChaveAcesso($this->token->getRefresh_token(), $this->token->getApiUrl());
             }
             elseif($this->token->isValid() == Token::VALID_REQUIRE_NEW_TOKEN){
-                $this->token = $auth->gerarChaveAcesso($this->token->getCode(), $this->token->getApiUrl());
+                $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->token->getCode(), $this->token->getApiUrl());
             }
             
             $this->triggerEvent("refreshedToken");

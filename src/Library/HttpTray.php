@@ -1,6 +1,8 @@
 <?php
 namespace Traycommerce\Library;
 
+include __DIR__ . "/../Helpers/Global.php";
+
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 

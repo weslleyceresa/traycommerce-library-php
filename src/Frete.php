@@ -22,7 +22,7 @@ class Frete extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -56,7 +56,7 @@ class Frete extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);

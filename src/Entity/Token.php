@@ -2,9 +2,6 @@
 namespace Traycommerce\Entity;
 
 class Token {
-    private $code;
-    private $apiUrl;
-    private $storeUrl;
     private $store_id;
     private $access_token;
     private $refresh_token;
@@ -25,18 +22,6 @@ class Token {
             return Token::VALID_REFRESH_TOKEN;
         
         return Token::VALID;
-    }
-    
-    public function getCode() {
-        return $this->code;
-    }
-
-    public function getApiUrl() {
-        return $this->apiUrl;
-    }
-
-    public function getStoreUrl() {
-        return $this->storeUrl;
     }
 
     public function getStore_id() {
@@ -59,21 +44,6 @@ class Token {
         return $this->date_expiration_refresh_token;
     }
 
-    public function setCode($code) {
-        $this->code = $code;
-        return $this;
-    }
-
-    public function setApiUrl($apiUrl) {
-        $this->apiUrl = $apiUrl;
-        return $this;
-    }
-
-    public function setStoreUrl($storeUrl) {
-        $this->storeUrl = $storeUrl;
-        return $this;
-    }
-
     public function setStore_id($store_id) {
         $this->store_id = $store_id;
         return $this;
@@ -90,12 +60,12 @@ class Token {
     }
 
     public function setDate_expiration_access_token($date_expiration_access_token) {
-        $this->date_expiration_access_token = $date_expiration_access_token;
+        $this->date_expiration_access_token = strtotime($date_expiration_access_token);
         return $this;
     }
 
     public function setDate_expiration_refresh_token($date_expiration_refresh_token) {
-        $this->date_expiration_refresh_token = $date_expiration_refresh_token;
+        $this->date_expiration_refresh_token = strtotime($date_expiration_refresh_token);
         return $this;
     }
 }

@@ -18,7 +18,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $query = array_merge($query, $filtros);
@@ -36,7 +36,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $query = array_merge($query, $filtros);
@@ -54,7 +54,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $query = array_merge($query, $filtros);
@@ -72,7 +72,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri, $data, $query);
@@ -88,7 +88,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -104,7 +104,7 @@ class Categoria extends BaseEndpoints {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->trayCommerceController->getToken()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri, array(), $query);

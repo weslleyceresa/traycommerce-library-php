@@ -50,21 +50,24 @@ class Auth extends HttpTray {
         return $token;
     }
 
-    public function atualizarChaveAcesso(Token $token) {
+    public function atualizarChaveAcesso($refreshToken, $apiAddress) {
         $query = array(
-            "refresh_token" => $this->getRefreshToken()
+            "refresh_token" => $refreshToken
         );
 
-        parent::setBaseUrlApi($token->getApiUrl());
+        parent::setBaseUrlApi($apiAddress);
 
         $resposta = $this->get(self::uri, array(), $query);
 
         if (success($resposta["code"])) {
+            $token = new Token();
+
             $token
                 ->setAccess_token($resposta["data"]->access_token)
                 ->setRefresh_token($resposta["data"]->refresh_token)
                 ->setDate_expiration_access_token($resposta["data"]->date_expiration_access_token)
-                ->setDate_expiration_refresh_token($resposta["data"]->date_expiration_refresh_token);
+                ->setDate_expiration_refresh_token($resposta["data"]->date_expiration_refresh_token)
+                ->setStore_id($resposta["data"]->store_id);
 
             return $token;
         }
