@@ -37,11 +37,11 @@ class Token {
     }
 
     public function getDate_expiration_access_token() {
-        return $this->date_expiration_access_token;
+        return !empty($this->date_expiration_access_token) ? date("Y-m-d H:i:s", $this->date_expiration_access_token) : null;
     }
 
     public function getDate_expiration_refresh_token() {
-        return $this->date_expiration_refresh_token;
+        return !empty($this->date_expiration_refresh_token) ? date("Y-m-d H:i:s", $this->date_expiration_refresh_token) : null;
     }
 
     public function setStore_id($store_id) {

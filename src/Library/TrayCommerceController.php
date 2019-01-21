@@ -29,16 +29,25 @@ class TrayCommerceController {
     }
     
     public function checkValidToken(){
-        if ($this->token->isValid() != Token::VALID){
+        if(empty($this->token)){
+            $this->triggerEvent("beforeRefreshToken");
+            
+            $auth = new Auth();
+            
+            $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
+            
+            $this->triggerEvent("refreshedToken");
+        }
+        elseif($this->token->isValid() != Token::VALID){
             $auth = new Auth();
 
             $this->triggerEvent("beforeRefreshToken");
             
             if($this->token->isValid() == Token::VALID_REFRESH_TOKEN){
-                $this->token = $auth->atualizarChaveAcesso($this->token->getRefresh_token(), $this->token->getApiUrl());
+                $this->token = $auth->atualizarChaveAcesso($this->token->getRefresh_token(), $this->getApiUrl());
             }
             elseif($this->token->isValid() == Token::VALID_REQUIRE_NEW_TOKEN){
-                $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->token->getCode(), $this->token->getApiUrl());
+                $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
             }
             
             $this->triggerEvent("refreshedToken");
@@ -71,6 +80,11 @@ class TrayCommerceController {
     
     public function getToken(){
         return $this->token;
+    }
+    
+    public function setToken(Token $token){
+        $this->token = $token;
+        return $this;
     }
     
     public function authorizeApplication(){
