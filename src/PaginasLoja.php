@@ -5,7 +5,7 @@ use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
 
-class Produto extends BaseEndpoints{
+class PaginasLoja extends BaseEndpoints{
     const uri = "custom_pages/";
     
     public function __construct() {

@@ -6,7 +6,7 @@ use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
 
-class Produto extends BaseEndpoints{
+class ScriptsExternos extends BaseEndpoints{
     const uri = "external_scripts/";
     
     public function __construct() {

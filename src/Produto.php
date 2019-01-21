@@ -27,7 +27,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -51,7 +51,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
         $query = array_merge($query, $filtros);
@@ -102,7 +102,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri, $data, $query);
@@ -137,7 +137,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri . $productId, $data, $query);
@@ -159,7 +159,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri . $productId, $data, $query);
@@ -181,7 +181,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -205,7 +205,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -234,7 +234,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_brands, $data, $query);
@@ -262,7 +262,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_brands . $brandId, $data, $query);
@@ -284,7 +284,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_brands . $brandId, $data, $query);
@@ -306,7 +306,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -337,7 +337,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->post(self::uri . $productId . "/properties", $data, $query);
@@ -359,7 +359,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -383,7 +383,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -407,7 +407,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $query = array_merge($query, $filtros);
@@ -449,7 +449,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_variants, $data, $query);
@@ -484,7 +484,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->put(self::uri_variants . $variantId, $data, $query);
@@ -506,7 +506,7 @@ class Produto extends BaseEndpoints{
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
-            "access_token" => $this->token->getAccess_token()
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
         $resposta = $this->delete(self::uri_variants . $variantId, $data, $query);

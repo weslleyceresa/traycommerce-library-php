@@ -6,7 +6,7 @@ use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
 
-class Produto extends BaseEndpoints{
+class Newsletter extends BaseEndpoints{
     const uri = "newsletter/";
     
     public function __construct() {

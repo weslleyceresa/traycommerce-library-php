@@ -5,7 +5,7 @@ use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use function success;
 
-class Produto extends BaseEndpoints{
+class InformacoesLoja extends BaseEndpoints{
     const uri = "info/";
     
     public function __construct() {
