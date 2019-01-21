@@ -8,7 +8,6 @@ Biblioteca PHP v5.6 para manipulação da API da Tray
 
 use Traycommerce\CarrinhoCompra;
 use Traycommerce\Library\TrayCommerceController;
-use Traycommerce\Pedido;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -29,7 +28,7 @@ $trayCommerceController
 if($_GET["code"]){
     $trayCommerceController
             ->setCode($_GET["code"])
-            ->setApiUrl($_GET["base_url_api"]);
+            ->setApiUrl($_GET["api_address"]);
 }
 
 //autorizar a aplicação para gerar um token
@@ -48,9 +47,5 @@ $apiCarrinhoCompra = new CarrinhoCompra();
 
 $cartData = $apiCarrinhoCompra->consultarDados("asdsdasdad");
 
-$apiCarrinhoCompra->atualizarDados();
-
-$apiPedido = new Pedido();
-
-$apiPedido->atualizarDados($orderId);
+var_dump($cartData);
 ```
