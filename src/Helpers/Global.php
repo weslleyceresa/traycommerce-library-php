@@ -12,3 +12,9 @@ function success($code) {
 
     return false;
 }
+
+function dump($data) {
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+}
