@@ -10,6 +10,11 @@
             "name": "Weslley Ceresa",
             "email": "weslley@fivesdev.com",
             "homepage": "https://fivesdev.com"
+        },
+        {
+            "name": "Luis Fernando Calegari",
+            "email": "calegariluisfernando@gmail.com",
+            "homepage": "https://www.facebook.com/lfccalegari"
         }
     ],
     "require": {
