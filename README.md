@@ -31,9 +31,6 @@ if($_GET["code"]){
             ->setApiUrl($_GET["api_address"]);
 }
 
-//autorizar a aplicação para gerar um token
-$trayCommerceController->authorizeApplication();
-
 $trayCommerceController->onBeforeRefreshToken(function($currentToken){
     
 });
@@ -41,6 +38,9 @@ $trayCommerceController->onBeforeRefreshToken(function($currentToken){
 $trayCommerceController->onRefreshedToken(function($newToken){
     //atualizar banco
 });
+
+//autorizar a aplicação para gerar um token
+$trayCommerceController->authorizeApplication();
 
 //somente apos os passos anteriores carregar os metodos da api
 $apiCarrinhoCompra = new CarrinhoCompra();
