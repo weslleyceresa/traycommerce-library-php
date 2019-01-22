@@ -39,7 +39,7 @@ $trayCommerceController->onBeforeRefreshToken(function($currentToken){
 });
 
 $trayCommerceController->onRefreshedToken(function($newToken){
-    
+    //atualizar banco
 });
 
 //somente apos os passos anteriores carregar os metodos da api
