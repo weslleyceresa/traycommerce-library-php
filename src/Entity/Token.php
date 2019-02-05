@@ -61,11 +61,13 @@ class Token {
 
     public function setDate_expiration_access_token($date_expiration_access_token) {
         $this->date_expiration_access_token = strtotime($date_expiration_access_token);
+        $this->date_expiration_access_token = strtotime("-5 minutes", $this->date_expiration_access_token);
         return $this;
     }
 
     public function setDate_expiration_refresh_token($date_expiration_refresh_token) {
         $this->date_expiration_refresh_token = strtotime($date_expiration_refresh_token);
+        $this->date_expiration_refresh_token = strtotime("-5 minutes", $this->date_expiration_refresh_token);
         return $this;
     }
 }
