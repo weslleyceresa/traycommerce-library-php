@@ -76,8 +76,6 @@ class Pedido extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
 
-        $query = array_merge($query, $this->attrs);
-
         $resposta = $this->get(self::uri . $orderId . "/complete", array(), $query);
 
         if (success($resposta["code"])) {
