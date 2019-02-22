@@ -152,6 +152,7 @@ class TrayCommerceController {
 
     public function setCode($code) {
         $this->code = $code;
+        $this->token = null;
         return $this;
     }
 }
