@@ -94,7 +94,11 @@ class TrayCommerceController {
             if(empty($this->getCode()))
                 throw new Exception("");
             
+            $this->triggerEvent("beforeRefreshToken");
+            
             $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
+            
+            $this->triggerEvent("refreshedToken");
             
         } catch (Exception $ex) {
             $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
