@@ -101,7 +101,7 @@ class TrayCommerceController {
             $this->triggerEvent("refreshedToken");
             
         } catch (Exception $ex) {
-            $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
+            return $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
         }
     }
     
