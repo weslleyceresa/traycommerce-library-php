@@ -347,7 +347,7 @@ class Cliente extends BaseEndpoints{
 
     /**
      * 
-     * @param int $addressId
+     * @param array $data
      * @return object
      * @throws Exception
      */
@@ -365,5 +365,27 @@ class Cliente extends BaseEndpoints{
         }
 
         throw new TrayCommerceException("[Cliente][relacionarPerfil]", $resposta["data"], $resposta["code"]);
+    }
+    
+    /**
+     * 
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function removerRelacionamentoPerfil($data = array()) {
+        $this->trayCommerceController->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
+        );
+        
+        $resposta = $this->delete(self::uri_profile . "relation", $data, $query);
+
+        if (success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException("[Cliente][removerRelacionamentoPerfil]", $resposta["data"], $resposta["code"]);
     }
 }

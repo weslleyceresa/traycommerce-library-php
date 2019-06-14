@@ -38,12 +38,12 @@ class AdditionalInformation extends BaseEndpoints {
     
     /**
      * 
-     * @param type $variantId
+     * @param int $additionInfoId
      * @param array $filtros
      * @return object
      * @throws TrayCommerceException
      */
-    public function detalhes($variantId, array $filtros = array()) {
+    public function detalhes($additionInfoId, array $filtros = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -52,7 +52,7 @@ class AdditionalInformation extends BaseEndpoints {
         
         $query = array_merge($query, $filtros);
 
-        $resposta = $this->get(self::uri . $variantId, array(), $query);
+        $resposta = $this->get(self::uri . $additionInfoId, array(), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -63,11 +63,11 @@ class AdditionalInformation extends BaseEndpoints {
     
     /**
      * 
-     * @param type $variantId
+     * @param int $additionInfoId
      * @return object
      * @throws TrayCommerceException
      */
-    public function remover($variantId) {
+    public function remover($additionInfoId) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -76,7 +76,7 @@ class AdditionalInformation extends BaseEndpoints {
         
         $query = array_merge($query, $filtros);
 
-        $resposta = $this->delete(self::uri . $variantId, array(), $query);
+        $resposta = $this->delete(self::uri . $additionInfoId, array(), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -92,7 +92,7 @@ class AdditionalInformation extends BaseEndpoints {
      * @return object
      * @throws TrayCommerceException
      */
-    public function editar($variantId, array $data) {
+    public function editar($additionInfoId, array $data) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
