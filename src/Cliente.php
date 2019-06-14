@@ -347,23 +347,65 @@ class Cliente extends BaseEndpoints{
 
     /**
      * 
-     * @param array $data
+     * @param int $customerId
+     * @param int $profileId
      * @return object
      * @throws Exception
      */
-    public function relacionarPerfil($data = array()) {
+    public function relacionarPerfil($customerId, $profileId) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->post(self::uri_profile . "relation", $data, $query);
+        $resposta = $this->post(self::uri_profile . "relation", array(
+            "Customer" => array(
+                "Profiles" => array(
+                    array(
+                        "customer_id" => $customerId,
+                        "customer_profile_id" => $profileId
+                    )
+                )
+            )
+        ), $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
         }
 
         throw new TrayCommerceException("[Cliente][relacionarPerfil]", $resposta["data"], $resposta["code"]);
+    }
+    
+    /**
+     * 
+     * @param int $customerId
+     * @param int $profileId
+     * @return object
+     * @throws Exception
+     */
+    public function removerRelacionamentoPerfil($customerId, $profileId) {
+        $this->trayCommerceController->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
+        );
+        
+        $resposta = $this->post(self::uri_profile . "relation_delete", array(
+            "Customer" => array(
+                "Profiles" => array(
+                    array(
+                        "customer_id" => $customerId,
+                        "customer_profile_id" => $profileId
+                    )
+                )
+            )
+        ), $query);
+
+        if (success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException("[Cliente][removerRelacionamentoPerfil]", $resposta["data"], $resposta["code"]);
     }
 }
