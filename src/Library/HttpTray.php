@@ -28,7 +28,16 @@ class HttpTray {
             throw new TrayCommerceException("[TrayCommerce][post]", "base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-                        $this->base_url_api . $action, $params, $query, "POST"
+            $this->base_url_api . $action, $params, $query, "POST"
+        );
+    }
+    
+    public function postJson($action, $params = array(), $query = array()) {
+        if (empty($this->base_url_api))
+            throw new TrayCommerceException("[TrayCommerce][postJson]", "base_url_api deve ser fornecido.");
+
+        return $this->curlPut(
+            $this->base_url_api . $action, $params, $query, "POST"
         );
     }
 
@@ -37,7 +46,7 @@ class HttpTray {
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-                        $this->base_url_api . $action, $params, $query, "GET"
+            $this->base_url_api . $action, $params, $query, "GET"
         );
     }
 
@@ -46,7 +55,7 @@ class HttpTray {
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-                        $this->base_url_api . $action, $params, $query, "PUT"
+            $this->base_url_api . $action, $params, $query, "PUT"
         );
     }
 
@@ -55,7 +64,7 @@ class HttpTray {
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-                        $this->base_url_api . $action, $params, $query, "DELETE"
+            $this->base_url_api . $action, $params, $query, "DELETE"
         );
     }
 
