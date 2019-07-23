@@ -14,6 +14,7 @@ class CupomDisconto extends BaseEndpoints{
     const uri_brand_relationship = "discount_coupons/brand_relationship/";
     const uri_shipping_relationship = "discount_coupons/shipping_relationship/";
     const uri_delete_relationship = "discount_coupons/delete_relationship/";
+    const uri_create_relationship = "discount_coupons/create_relationship/";
         
     /**
      * 
@@ -39,18 +40,19 @@ class CupomDisconto extends BaseEndpoints{
         
     /**
      * 
+     * @param int $couponId
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function limitar($data = array()) {
+    public function limitar($couponId, $data = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->put(self::uri, $data, $query);
+        $resposta = $this->put(self::uri_create_relationship . $couponId, $data, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -61,18 +63,19 @@ class CupomDisconto extends BaseEndpoints{
         
     /**
      * 
+     * @param int $couponId
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function setarComoTroca($data = array()) {
+    public function setarComoTroca($couponId, $data = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->put(self::uri, $data, $query);
+        $resposta = $this->put(self::uri_create_relationship . $couponId, $data, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
