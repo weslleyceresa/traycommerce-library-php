@@ -52,7 +52,7 @@ class CupomDisconto extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->put(self::uri_create_relationship . $couponId, $data, $query);
+        $resposta = $this->postJson(self::uri_create_relationship . $couponId, $data, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
