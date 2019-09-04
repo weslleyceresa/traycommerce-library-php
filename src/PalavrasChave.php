@@ -33,7 +33,7 @@ class PalavrasChave extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[PalavrasChave][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PalavrasChave][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -57,6 +57,6 @@ class PalavrasChave extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[PalavrasChave][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PalavrasChave][dados]", $resposta["responseText"], $resposta["code"]);
     }
 }

@@ -34,7 +34,7 @@ class ScriptsExternos extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[ScriptsExternos][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -60,7 +60,7 @@ class ScriptsExternos extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[ScriptsExternos][cadastrar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][cadastrar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -86,6 +86,6 @@ class ScriptsExternos extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[ScriptsExternos][atualizarDados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[ScriptsExternos][atualizarDados]", $resposta["responseText"], $resposta["code"]);
     }
 }

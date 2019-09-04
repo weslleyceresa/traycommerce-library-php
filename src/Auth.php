@@ -36,7 +36,7 @@ class Auth extends HttpTray {
         $resposta = $this->post(self::uri, $data, array());
 
         if (!success($resposta["code"])) {
-            throw new TrayCommerceException("[Auth][gerarChaveAcesso]", $resposta["data"], $resposta["code"]);
+            throw new TrayCommerceException("[Auth][gerarChaveAcesso]", $resposta["responseText"], $resposta["code"]);
         }
         
         $token = new Token();
@@ -72,7 +72,7 @@ class Auth extends HttpTray {
             return $token;
         }
 
-        throw new TrayCommerceException("[Auth][atualizarChaveAcesso]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Auth][atualizarChaveAcesso]", $resposta["responseText"], $resposta["code"]);
     }
 }
 

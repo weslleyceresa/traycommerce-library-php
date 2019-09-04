@@ -33,7 +33,7 @@ class PaginasLoja extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[PaginasLoja][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PaginasLoja][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -57,6 +57,6 @@ class PaginasLoja extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[PaginasLoja][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[PaginasLoja][dados]", $resposta["responseText"], $resposta["code"]);
     }
 }

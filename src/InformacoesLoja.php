@@ -32,6 +32,6 @@ class InformacoesLoja extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[InformacoesLoja][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[InformacoesLoja][dados]", $resposta["responseText"], $resposta["code"]);
     }
 }

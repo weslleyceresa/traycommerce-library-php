@@ -53,7 +53,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][login]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][login]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -77,7 +77,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -101,7 +101,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][dados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -166,7 +166,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][cadastrar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][cadastrar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -212,7 +212,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][atualizarDados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][atualizarDados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -234,7 +234,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][excluir]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][excluir]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -258,7 +258,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][listagemEnderecos]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][listagemEnderecos]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -282,7 +282,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][dadosEndereco]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][dadosEndereco]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -320,7 +320,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][cadastrarEndereco]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][cadastrarEndereco]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -342,7 +342,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][excluirEndereco]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][excluirEndereco]", $resposta["responseText"], $resposta["code"]);
     }
 
     /**
@@ -374,7 +374,7 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][relacionarPerfil]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][relacionarPerfil]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -406,6 +406,6 @@ class Cliente extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Cliente][removerRelacionamentoPerfil]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Cliente][removerRelacionamentoPerfil]", $resposta["responseText"], $resposta["code"]);
     }
 }

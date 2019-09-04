@@ -29,7 +29,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][consultarCategorias]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][consultarCategorias]", $resposta["responseText"], $resposta["code"]);
     }
 
     public function consultarArvoreCategorias(array $filtros = []) {
@@ -47,7 +47,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][consultarArvoreCategorias]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][consultarArvoreCategorias]", $resposta["responseText"], $resposta["code"]);
     }
 
     public function consultarDadosCategoria($categoriaId, array $filtros = []) {
@@ -65,7 +65,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][consultarDadosCategoria]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][consultarDadosCategoria]", $resposta["responseText"], $resposta["code"]);
     }
 
     public function cadastrarCategoria($data = []) {
@@ -81,7 +81,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][cadastrarCategoria]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][cadastrarCategoria]", $resposta["responseText"], $resposta["code"]);
     }
     
     public function atualizarCategoria($data = []) {
@@ -97,7 +97,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][atualizarCategoria]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][atualizarCategoria]", $resposta["responseText"], $resposta["code"]);
     }
     
     public function excluirCategoria($idCategoria) {
@@ -113,7 +113,7 @@ class Categoria extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Categoria][excluirCategoria]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Categoria][excluirCategoria]", $resposta["responseText"], $resposta["code"]);
     }
 
 }

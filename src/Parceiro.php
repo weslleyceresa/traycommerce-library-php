@@ -34,7 +34,7 @@ class Parceiro extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Parceiro][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Parceiro][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -58,7 +58,7 @@ class Parceiro extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Parceiro][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Parceiro][dados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -86,7 +86,7 @@ class Parceiro extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Parceiro][cadastrar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Parceiro][cadastrar]", $resposta["responseText"], $resposta["code"]);
         
     }
     
@@ -115,7 +115,7 @@ class Parceiro extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Parceiro][atualizarDados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Parceiro][atualizarDados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -137,6 +137,6 @@ class Parceiro extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Parceiro][excluir]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Parceiro][excluir]", $resposta["responseText"], $resposta["code"]);
     }
 }

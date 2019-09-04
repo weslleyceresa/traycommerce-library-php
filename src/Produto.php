@@ -38,12 +38,12 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
      * 
-     * @param int $productId
+     * @param int $productIddd
      * @return object
      * @throws Exception/
      */
@@ -62,7 +62,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -111,7 +111,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -146,7 +146,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -168,7 +168,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluir]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluir]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -192,7 +192,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemMarcas]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemMarcas]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -216,7 +216,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dadosMarca]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosMarca]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -243,7 +243,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarMarca]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarMarca]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -271,7 +271,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDadosMarca]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosMarca]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -293,7 +293,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluirMarca]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirMarca]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -317,7 +317,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemCaracterísticasProdutos]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemCaracterísticasProdutos]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -346,7 +346,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarCaracterísticasProdutos]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarCaracterísticasProdutos]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -370,7 +370,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemProdutosVendidos]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemProdutosVendidos]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -394,7 +394,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemVariacoes]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemVariacoes]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -418,7 +418,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dadosVariacao]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosVariacao]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -458,7 +458,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarVariacao]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarVariacao]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -493,7 +493,7 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDadosVariacao]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosVariacao]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -515,6 +515,6 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluirVariacao]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirVariacao]", $resposta["responseText"], $resposta["code"]);
     }
 }

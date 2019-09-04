@@ -33,7 +33,7 @@ class AdditionalInformation extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[AdditionalInformation][listar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[AdditionalInformation][listar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -58,7 +58,7 @@ class AdditionalInformation extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[AdditionalInformation][detalhes]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[AdditionalInformation][detalhes]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -82,7 +82,7 @@ class AdditionalInformation extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[AdditionalInformation][remover]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[AdditionalInformation][remover]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -105,7 +105,7 @@ class AdditionalInformation extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[AdditionalInformation][editar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[AdditionalInformation][editar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -127,6 +127,6 @@ class AdditionalInformation extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[AdditionalInformation][criar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[AdditionalInformation][criar]", $resposta["responseText"], $resposta["code"]);
     }
 }

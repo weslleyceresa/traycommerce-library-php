@@ -36,7 +36,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][listagem]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagem]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -60,7 +60,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][dados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -82,7 +82,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][dadosCompleto]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dadosCompleto]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -132,7 +132,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][cadastrar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -168,7 +168,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][atualizarDados]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarDados]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -190,7 +190,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][cancelar]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cancelar]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -212,7 +212,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][excluir]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluir]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -236,7 +236,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][listagemNotasFiscais]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagemNotasFiscais]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -261,7 +261,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][consultarDadosNotaFiscal]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][consultarDadosNotaFiscal]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -285,7 +285,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][consultarNotaPorPedido]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][consultarNotaPorPedido]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -321,7 +321,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][cadastrarNotaFiscal]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrarNotaFiscal]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -358,7 +358,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][atualizarNotaFiscal]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarNotaFiscal]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -389,7 +389,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][incluirProduto]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][incluirProduto]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -412,7 +412,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][excluirProduto]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluirProduto]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -436,7 +436,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][listagemStatus]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][listagemStatus]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -460,7 +460,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][dadosStatus]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][dadosStatus]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -487,7 +487,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][cadastrarStatus]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][cadastrarStatus]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -515,7 +515,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][atualizarDadosStatus]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][atualizarDadosStatus]", $resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -537,7 +537,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][excluirStatus]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][excluirStatus]", $resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -565,7 +565,7 @@ class Pedido extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pedido][etiquetasMercadoLivre]", $resposta["data"], $resposta["code"]);
+        throw new TrayCommerceException("[Pedido][etiquetasMercadoLivre]", $resposta["responseText"], $resposta["code"]);
     }
 }
 ?>
