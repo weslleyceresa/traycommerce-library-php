@@ -131,7 +131,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => getCurlErrorByCode($errCode)." - ".$errText
+            "err" => getCurlErrorByCode($errCode)
         );
     }
 
@@ -171,7 +171,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => getCurlErrorByCode($errCode)." - ".$errText
+            "err" => getCurlErrorByCode($errCode)
         );
     }
 }
