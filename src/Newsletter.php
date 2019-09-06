@@ -34,7 +34,7 @@ class Newsletter extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Newsletter][listagem]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Newsletter][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -61,7 +61,7 @@ class Newsletter extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Newsletter][cadastrar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Newsletter][cadastrar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -87,6 +87,6 @@ class Newsletter extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Newsletter][confirmar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Newsletter][confirmar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }

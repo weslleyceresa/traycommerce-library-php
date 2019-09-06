@@ -34,7 +34,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][listagem]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -58,7 +58,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][dados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][dados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -88,7 +88,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][cadastrar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][cadastrar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -118,7 +118,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][atualizarDados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][atualizarDados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -140,7 +140,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][excluir]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][excluir]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -168,7 +168,7 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][opcoes]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][opcoes]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -189,6 +189,6 @@ class Pagamento extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Pagamento][configuracoes]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Pagamento][configuracoes]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }

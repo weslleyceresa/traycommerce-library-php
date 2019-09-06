@@ -33,7 +33,7 @@ class ProgressiveDiscount extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[ProgressiveDiscount][listagem]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[ProgressiveDiscount][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -58,6 +58,6 @@ class ProgressiveDiscount extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[ProgressiveDiscount][dados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[ProgressiveDiscount][dados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }

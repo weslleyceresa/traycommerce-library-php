@@ -33,7 +33,7 @@ class Frete extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Frete][listagemFormasEnvio]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Frete][listagemFormasEnvio]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -67,6 +67,6 @@ class Frete extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Frete][calculo]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Frete][calculo]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }

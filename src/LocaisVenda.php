@@ -35,7 +35,7 @@ class LocaisVenda extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[LocaisVenda][dados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[LocaisVenda][dados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -57,7 +57,7 @@ class LocaisVenda extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[LocaisVenda][criar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[LocaisVenda][criar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -81,6 +81,6 @@ class LocaisVenda extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[LocaisVenda][listagem]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[LocaisVenda][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }

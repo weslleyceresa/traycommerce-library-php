@@ -35,7 +35,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][cadastrar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][cadastrar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
         
     /**
@@ -58,7 +58,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][limitar]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][limitar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
         
     /**
@@ -81,7 +81,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][setarComoTroca]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][setarComoTroca]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -105,7 +105,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][listagem]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -129,7 +129,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][dados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][dados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -153,7 +153,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][clientesRelacionados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][clientesRelacionados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -177,7 +177,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][produtosRelacionados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][produtosRelacionados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -201,7 +201,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][categoriasRelacionadas]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][categoriasRelacionadas]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -225,7 +225,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][marcasRelacionadas]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][marcasRelacionadas]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -249,7 +249,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][fretesRelacionados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][fretesRelacionados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
         
     /**
@@ -272,7 +272,7 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][excluirRelacionados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][excluirRelacionados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 
     /**
@@ -294,6 +294,6 @@ class CupomDisconto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CupomDisconto][excluir]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CupomDisconto][excluir]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }    
 }

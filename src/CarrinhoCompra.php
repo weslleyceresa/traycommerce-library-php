@@ -33,7 +33,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][consultarDados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarDados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -55,7 +55,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][consultarCompleto]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarCompleto]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -96,7 +96,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][criarNovo]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][criarNovo]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -136,7 +136,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][atualizarDados]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][atualizarDados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -158,7 +158,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][excluir]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][excluir]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -187,7 +187,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][consultarProduto]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][consultarProduto]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /*
@@ -222,7 +222,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][atualizarProduto]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][atualizarProduto]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
     /**
@@ -251,7 +251,7 @@ class CarrinhoCompra extends BaseEndpoints {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[CarrinhoCompra][excluirProduto]", $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[CarrinhoCompra][excluirProduto]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }
 ?>
