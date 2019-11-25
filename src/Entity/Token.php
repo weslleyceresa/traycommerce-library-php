@@ -15,11 +15,11 @@ class Token {
     public function isValid(){
         $now = strtotime(date("Y-m-d H:i:s"));
         $now = strtotime("-5 minutes", $now);
-        
-        if($now > $this->date_expiration_access_token)
+
+        if($now > $this->date_expiration_refresh_token)
             return Token::VALID_REQUIRE_NEW_TOKEN;
         
-        if($now > $this->date_expiration_refresh_token)
+        if($now > $this->date_expiration_access_token)
             return Token::VALID_REFRESH_TOKEN;
         
         return Token::VALID;
