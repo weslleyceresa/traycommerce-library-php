@@ -2,11 +2,13 @@
 namespace Traycommerce\Entity;
 
 class Token {
-    private $store_id;
+    private $code;
+    private $message;
     private $access_token;
     private $refresh_token;
     private $date_expiration_access_token;
-    private $date_expiration_refresh_token;    
+    private $date_expiration_refresh_token;
+    private $store_id;
     
     const VALID = 1;
     const VALID_REFRESH_TOKEN = 2;
@@ -44,6 +46,14 @@ class Token {
     public function getDate_expiration_refresh_token() {
         return !empty($this->date_expiration_refresh_token) ? date("Y-m-d H:i:s", $this->date_expiration_refresh_token) : null;
     }
+    
+    public function getCode(){
+        return $this->code;
+    }
+    
+    public function getMessage(){
+        return $this->message;
+    }
 
     public function setStore_id($store_id) {
         $this->store_id = $store_id;
@@ -69,6 +79,16 @@ class Token {
     public function setDate_expiration_refresh_token($date_expiration_refresh_token) {
         $this->date_expiration_refresh_token = strtotime($date_expiration_refresh_token);
         $this->date_expiration_refresh_token = strtotime("-5 minutes", $this->date_expiration_refresh_token);
+        return $this;
+    }
+    
+    public function setCode($code) {
+        $this->code = $code;
+        return $this;
+    }
+    
+    public function setMessage($message) {
+        $this->message = $message;
         return $this;
     }
 }
