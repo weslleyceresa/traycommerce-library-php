@@ -4,6 +4,8 @@ namespace Traycommerce\Entity;
 class Token {
     private $code;
     private $message;
+    private $date_activated;
+    private $api_host;
     private $access_token;
     private $refresh_token;
     private $date_expiration_access_token;
@@ -54,6 +56,14 @@ class Token {
     public function getMessage(){
         return $this->message;
     }
+    
+    public function getDate_activated(){
+        return !empty($this->date_activated) ? date("Y-m-d H:i:s", $this->date_activated) : null;
+    }
+    
+    public function getApi_host(){
+        return $this->api_host;
+    }
 
     public function setStore_id($store_id) {
         $this->store_id = $store_id;
@@ -89,6 +99,16 @@ class Token {
     
     public function setMessage($message) {
         $this->message = $message;
+        return $this;
+    }
+    
+    public function setDate_activated($date_activated) {
+        $this->date_activated = strtotime($date_activated);
+        return $this;
+    }
+    
+    public function setApi_host($api_host) {
+        $this->api_host = $api_host;
         return $this;
     }
 }
