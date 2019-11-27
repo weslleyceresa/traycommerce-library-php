@@ -41,6 +41,7 @@ class Auth extends HttpTray {
         
         $token = new Token();
         $token
+            ->setDate_activated($resposta["data"]->date_activated)
             ->setCode($resposta["data"]->code)
             ->setMessage($resposta["data"]->message)
             ->setAccess_token($resposta["data"]->access_token)
@@ -65,6 +66,7 @@ class Auth extends HttpTray {
             $token = new Token();
 
             $token
+                ->setDate_activated($resposta["data"]->date_activated)
                 ->setCode($resposta["data"]->code)
                 ->setMessage($resposta["data"]->message)
                 ->setAccess_token($resposta["data"]->access_token)
