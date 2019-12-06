@@ -16,8 +16,11 @@ class Token {
     const VALID_REFRESH_TOKEN = 2;
     const VALID_REQUIRE_NEW_TOKEN = 3;
     
-    public function isValid(){
+    public function isValid($addTimeToNow = null){
         $now = strtotime(date("Y-m-d H:i:s"));
+        
+        if($addTimeToNow)
+            $now = strtotime($addTimeToNow, $now);
 
         if($now > $this->date_expiration_refresh_token)
             return Token::VALID_REQUIRE_NEW_TOKEN;

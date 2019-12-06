@@ -67,20 +67,30 @@ class TrayCommerceController {
         }
     }
     
-    public function triggerEvent($eventName){
+    private function triggerEvent($eventName){
         switch($eventName){
             case "beforeRefreshToken":
                 foreach($this->eventsOnBeforeRefreshToken as $callback){
                     $callback($this->token);
                 }
+                
+                $this->eventsOnBeforeRefreshToken = [];
             break;
         
             case "refreshedToken":
                 foreach($this->eventsOnRefreshedToken as $callback){
                     $callback($this->token);
                 }
+                
+                $this->eventsOnRefreshedToken = [];
             break;
         }
+    }
+    
+    public function clearEvents(){
+        $this->eventsOnRefreshedToken = [];
+        $this->eventsOnBeforeRefreshToken = [];
+        return $this;
     }
     
     public function onBeforeRefreshToken($callback){
