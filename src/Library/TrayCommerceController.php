@@ -4,6 +4,7 @@ namespace Traycommerce\Library;
 use Exception;
 use Traycommerce\Auth;
 use Traycommerce\Entity\Token;
+use Traycommerce\Exceptions\TrayCommerceException;
 
 class TrayCommerceController {
     private $token;
@@ -20,6 +21,12 @@ class TrayCommerceController {
     private $apiUrl;
     private $code;
     
+    private $readOnly;
+    
+    private function __construct() {
+        $this->readOnly = false;
+    }
+    
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new TrayCommerceController();
@@ -30,6 +37,9 @@ class TrayCommerceController {
     
     public function checkValidToken(){
         if(empty($this->token)){
+            if($this->readOnly)
+                throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Em modo leitura é necessário informar um token!");
+            
             $this->triggerEvent("beforeRefreshToken");
             
             $auth = new Auth();
@@ -39,6 +49,9 @@ class TrayCommerceController {
             $this->triggerEvent("refreshedToken");
         }
         elseif($this->token->isValid() != Token::VALID){
+            if($this->readOnly)
+                throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Token inválido ou expirado!");
+            
             $auth = new Auth();
 
             $this->triggerEvent("beforeRefreshToken");
@@ -88,11 +101,14 @@ class TrayCommerceController {
     }
     
     public function authorizeApplication(){
+        if($this->readOnly)
+            return;
+        
         $auth = new Auth();
         
         try{
             if(empty($this->getCode()))
-                throw new Exception("");
+                throw new Exception("Informe o código da aplicação");
             
             $this->triggerEvent("beforeRefreshToken");
             
@@ -158,6 +174,16 @@ class TrayCommerceController {
     public function setCode($code) {
         $this->code = $code;
         $this->token = null;
+        return $this;
+    }
+    
+    public function enableReadOnly() {
+        $this->readOnly = true;
+        return $this;
+    }
+    
+    public function disableReadOnly() {
+        $this->readOnly = false;
         return $this;
     }
 }
