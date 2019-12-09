@@ -40,7 +40,7 @@ class TrayCommerceController {
             if($this->readOnly)
                 throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Em modo leitura é necessário informar um token!");
             
-            $this->triggerEvent("beforeRefreshToken");
+            $this->triggerEvent("beforeRefreshToken"); 
             
             $auth = new Auth();
             
