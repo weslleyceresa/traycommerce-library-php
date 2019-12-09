@@ -105,7 +105,7 @@ class TrayCommerceController {
         return $this->token;
     }
     
-    public function setToken(Token $token){
+    public function setToken($token){
         $this->token = $token;
         return $this;
     }
