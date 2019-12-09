@@ -12,15 +12,17 @@ class Token {
     private $date_expiration_refresh_token;
     private $store_id;
     
+    private $addTimeToNow;
+    
     const VALID = 1;
     const VALID_REFRESH_TOKEN = 2;
     const VALID_REQUIRE_NEW_TOKEN = 3;
     
-    public function isValid($addTimeToNow = null){
+    public function isValid(){
         $now = strtotime(date("Y-m-d H:i:s"));
         
-        if($addTimeToNow)
-            $now = strtotime($addTimeToNow, $now);
+        if($this->addTimeToNow)
+            $now = strtotime($this->addTimeToNow, $now);
 
         if($now > $this->date_expiration_refresh_token)
             return Token::VALID_REQUIRE_NEW_TOKEN;
@@ -29,6 +31,11 @@ class Token {
             return Token::VALID_REFRESH_TOKEN;
         
         return Token::VALID;
+    }
+    
+    public function setAddTimeToNow($addTimeToNow){
+        $this->addTimeToNow = $addTimeToNow;
+        return $this;
     }
 
     public function getStore_id() {
