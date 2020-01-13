@@ -107,12 +107,12 @@ class TrayCommerceController {
     
     public function setToken($token){
         if($token != null){
-            if($token instanceof Token)
-                $this->token = $token;
+            if(($token instanceof Token) == false){
+                $this->token = null;
+                throw new TrayCommerceException("[TrayCommerceController][setToken]", "Valor passado por parâmentro não parece ser uma instância de \TrayCommerce\Entity\Token");
+            }
             
-            $this->token = null;
-            
-            throw new TrayCommerceException("[TrayCommerceController][setToken]", "Valor passado por parâmentro não parece ser uma instância de \TrayCommerce\Entity\Token");
+            $this->token = $token;
         }
         
         return $this;
