@@ -214,7 +214,7 @@ class CarrinhoCompra extends BaseEndpoints {
         $url = self::uri . $sessionId . "/" . $productId;
         
         if(!empty($variantId))
-            $url += "/" . $variantId;
+            $url .= "/" . $variantId;
 
         $resposta = $this->put($url, $data, $query);
 
