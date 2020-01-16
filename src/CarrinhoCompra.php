@@ -227,18 +227,22 @@ class CarrinhoCompra extends BaseEndpoints {
     
     /**
      * 
-     * @param type $sessionId
-     * @param type $productId
-     * @param type $variantId
+     * @param string $sessionId
+     * @param int $productId
+     * @param int $variantId
+     * @param string $additionalInformation
      * @return type object
      * @throws Exception
      */
-    public function excluirProduto($sessionId, $productId, $variantId = null){
+    public function excluirProduto($sessionId, $productId, $variantId = null, $additionalInformation = ""){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        if(!empty($additionalInformation))
+            $query["additional_information"] = $additionalInformation;
         
         $url = self::uri . $sessionId . "/" . $productId;
         
