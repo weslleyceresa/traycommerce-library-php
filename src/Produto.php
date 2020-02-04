@@ -302,7 +302,7 @@ class Produto extends BaseEndpoints{
      * @return object 
      * @throws Exception
      */
-    public function listagemCaracterísticasProdutos(array $filtros = array()){
+    public function listagemCaracteristicasProdutos(array $filtros = array()){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -333,7 +333,7 @@ class Produto extends BaseEndpoints{
      * @return object
      * @throws Exception
      */
-    public function cadastrarCaracterísticasProdutos($productId, $data = array()) {
+    public function cadastrarCaracteristicasProdutos($productId, $data = array()) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
