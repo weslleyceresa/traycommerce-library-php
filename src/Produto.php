@@ -162,7 +162,7 @@ class Produto extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->delete(self::uri . $productId, $data, $query);
+        $resposta = $this->delete(self::uri . $productId, $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
