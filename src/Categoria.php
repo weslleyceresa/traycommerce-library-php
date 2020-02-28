@@ -100,14 +100,14 @@ class Categoria extends BaseEndpoints {
         throw new TrayCommerceException("[Categoria][atualizarCategoria]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
     
-    public function excluirCategoria($idCategoria) {
+    public function excluirCategoria($categoriaId) {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->delete(self::uri, array(), $query);
+        $resposta = $this->delete(self::uri . $categoriaId, array(), $query);
         
         if (success($resposta["code"])) {
             return $resposta["data"];

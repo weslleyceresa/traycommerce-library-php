@@ -228,7 +228,7 @@ class Cliente extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->delete(self::uri . $customerId, $data, $query);
+        $resposta = $this->delete(self::uri . $customerId, [], $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];

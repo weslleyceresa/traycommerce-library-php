@@ -204,12 +204,15 @@ class CarrinhoCompra extends BaseEndpoints {
      * @return type object
      * @throws Exception
      */
-    public function atualizarProduto($sessionId, $productId, $data = array(), $variantId = null){
+    public function atualizarProduto($sessionId, $productId, $data = array(), $variantId = null, $additionalInformation = ""){
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
+        
+        if(!empty($additionalInformation))
+            $query["additional_information"] = $additionalInformation;
         
         $url = self::uri . $sessionId . "/" . $productId;
         

@@ -162,7 +162,7 @@ class Produto extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->delete(self::uri . $productId, $query);
+        $resposta = $this->delete(self::uri . $productId, [], $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
@@ -287,7 +287,7 @@ class Produto extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->delete(self::uri_brands . $brandId, $data, $query);
+        $resposta = $this->delete(self::uri_brands . $brandId, [], $query);
 
         if (success($resposta["code"])) {
             return $resposta["data"];
