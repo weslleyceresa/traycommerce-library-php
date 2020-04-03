@@ -98,17 +98,20 @@ class HttpTray {
     private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST") {
         $params = http_build_query($getParams);
         
-        $postParams = http_build_query($postParams);
-
         $url = $url . "?" . $params;
-
+               
         $this->triggerEvent("before");
 
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postParams);
+        
+        if($type == "POST"){
+            $postParams = http_build_query($postParams);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postParams);
+        }
+        
         curl_setopt($ch, CURLOPT_SSLVERSION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

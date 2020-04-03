@@ -36,35 +36,44 @@ class TrayCommerceController {
     }
     
     public function checkValidToken(){
-        if(empty($this->token)){
-            if($this->readOnly)
+        if($this->readOnly){            
+            if(empty($this->apiUrl))
+                throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Inform a apiUrl no controller do SDK!");
+            
+            if(empty($this->token))
                 throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Em modo leitura é necessário informar um token!");
-            
-            $this->triggerEvent("beforeRefreshToken"); 
-            
-            $auth = new Auth();
-            
-            $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
-            
-            $this->triggerEvent("refreshedToken");
-        }
-        elseif($this->token->isValid() != Token::VALID){
-            if($this->readOnly)
+                                    
+            if($this->token->isValid() != Token::VALID)
                 throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Token inválido ou expirado!");
-            
-            $auth = new Auth();
-
-            $this->triggerEvent("beforeRefreshToken");
-            
-            if($this->token->isValid() == Token::VALID_REFRESH_TOKEN){
-                $this->token = $auth->atualizarChaveAcesso($this->token->getRefresh_token(), $this->getApiUrl());
-            }
-            elseif($this->token->isValid() == Token::VALID_REQUIRE_NEW_TOKEN){
-                $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
-            }
-            
-            $this->triggerEvent("refreshedToken");
         }
+        else{
+            if(empty($this->getConsumerKey()) || empty($this->getConsumerSecret()) || empty($this->getCode()) || empty($this->getApiUrl()))
+                throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Consumer key, secret, code e apiUrl são obrigatórios!");
+            
+            if(empty($this->token)){
+                $this->triggerEvent("beforeRefreshToken"); 
+
+                $auth = new Auth();
+
+                $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
+
+                $this->triggerEvent("refreshedToken");
+            }
+            elseif($this->token->isValid() != Token::VALID){
+                $auth = new Auth();
+
+                $this->triggerEvent("beforeRefreshToken");
+
+                if($this->token->isValid() == Token::VALID_REFRESH_TOKEN){
+                    $this->token = $auth->atualizarChaveAcesso($this->token->getRefresh_token(), $this->getApiUrl());
+                }
+                elseif($this->token->isValid() == Token::VALID_REQUIRE_NEW_TOKEN){
+                    $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
+                }
+
+                $this->triggerEvent("refreshedToken");
+            }
+        }               
     }
     
     private function triggerEvent($eventName){
@@ -115,6 +124,8 @@ class TrayCommerceController {
             $this->token = $token;
         }
         
+        $this->setApiUrl($this->token->getApi_host());
+        
         return $this;
     }
     
@@ -122,22 +133,19 @@ class TrayCommerceController {
         if($this->readOnly)
             return;
         
+        if(empty($this->getConsumerKey()) || empty($this->getConsumerSecret()))
+            throw new TrayCommerceException("[TrayCommerceController][authorizeApplication]", "Consumer key e secret são obrigatórios!");
+        
         $auth = new Auth();
         
-        try{
-            if(empty($this->getCode()))
-                throw new Exception("Informe o código da aplicação");
+        if(empty($this->getCode()))
+            return $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
+        
+        $this->triggerEvent("beforeRefreshToken");
             
-            $this->triggerEvent("beforeRefreshToken");
-            
-            $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
-            
-            $this->triggerEvent("refreshedToken");
-            
-        } catch (Exception $ex) {
-            $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
-            exit;
-        }
+        $this->token = $auth->gerarChaveAcesso($this->getConsumerKey(), $this->getConsumerSecret(), $this->getCode(), $this->getApiUrl());
+
+        $this->triggerEvent("refreshedToken");
     }
     
     public function getConsumerKey() {
@@ -185,7 +193,11 @@ class TrayCommerceController {
     }
 
     public function setApiUrl($apiUrl) {
+        if($apiUrl[strlen($apiUrl) - 1] != "/")
+            $apiUrl .= "/";
+        
         $this->apiUrl = $apiUrl;
+        
         return $this;
     }
 

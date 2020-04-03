@@ -18,6 +18,22 @@ class Token {
     const VALID_REFRESH_TOKEN = 2;
     const VALID_REQUIRE_NEW_TOKEN = 3;
     
+    public function __construct($tokenString = null) {
+        if(!empty($tokenString)){
+            $tokenString = json_decode($tokenString);
+            
+            $this->setAccess_token($tokenString->access_token)
+                ->setApi_host($tokenString->api_host)
+                ->setCode($tokenString->code)
+                ->setDate_activated($tokenString->date_activated)
+                ->setDate_expiration_access_token($tokenString->date_expiration_access_token)
+                ->setDate_expiration_refresh_token($tokenString->date_expiration_refresh_token)
+                ->setMessage($tokenString->message)
+                ->setRefresh_token($tokenString->refresh_token)
+                ->setStore_id($tokenString->store_id);  
+        }
+    }
+
     public function isValid(){
         $now = strtotime(date("Y-m-d H:i:s"));
         
@@ -119,5 +135,16 @@ class Token {
     public function setApi_host($api_host) {
         $this->api_host = $api_host;
         return $this;
+    }
+    
+    public function __toString(){
+        $vars = get_object_vars($this);
+        
+        foreach($vars as $key => $value){
+            if(preg_match("/date/i", $key))
+                $vars[$key] = date("Y-m-d H:i:s", $value);
+        }
+        
+        return json_encode($vars);
     }
 }
