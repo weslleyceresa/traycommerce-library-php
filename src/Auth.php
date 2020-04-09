@@ -14,14 +14,19 @@ class Auth extends HttpTray {
         parent::__construct();
     }
 
-    public function solicitarAutorizacao($consumerKey, $callbackUrl, $storeUrl) {
+    public function solicitarAutorizacao($consumerKey, $callbackUrl, $storeUrl, $returnUrlAuthorization = false) {
         $get = array(
             "response_type" => "code",
             "consumer_key" => $consumerKey,
             "callback" => $callbackUrl
         );
+        
+        $url = $storeUrl . self::uri_authorize . "?" . http_build_query($get);
+        
+        if($returnUrlAuthorization)
+            return $url;
 
-        header("Location: " . $storeUrl . self::uri_authorize . "?" . http_build_query($get));
+        header("Location: " . $url);
     }
 
     public function gerarChaveAcesso($consumerKey, $consumerSecret, $code, $apiAddress) {

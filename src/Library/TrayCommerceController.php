@@ -122,14 +122,14 @@ class TrayCommerceController {
             }
             
             $this->token = $token;
+            
+            $this->setApiUrl($this->token->getApi_host());
         }
-        
-        $this->setApiUrl($this->token->getApi_host());
-        
+                
         return $this;
     }
     
-    public function authorizeApplication(){
+    public function authorizeApplication($returnUrlAuthorization = false){
         if($this->readOnly)
             return;
         
@@ -139,7 +139,7 @@ class TrayCommerceController {
         $auth = new Auth();
         
         if(empty($this->getCode()))
-            return $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl());
+            return $auth->solicitarAutorizacao($this->getConsumerKey(), $this->getCallBackUrl(), $this->getStoreUrl(), $returnUrlAuthorization);
         
         $this->triggerEvent("beforeRefreshToken");
             
@@ -188,7 +188,11 @@ class TrayCommerceController {
     }
 
     public function setStoreUrl($storeUrl) {
+        if($storeUrl[strlen($storeUrl) - 1] != "/")
+            $storeUrl .= "/";
+        
         $this->storeUrl = $storeUrl;
+        
         return $this;
     }
 
