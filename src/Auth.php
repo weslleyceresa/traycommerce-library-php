@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Traycommerce\Entity\Token;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\HttpTray;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Auth extends HttpTray {
     const uri_authorize = "auth.php"; 
@@ -40,7 +40,7 @@ class Auth extends HttpTray {
 
         $resposta = $this->post(self::uri, $data, array());
 
-        if (!success($resposta["code"])) {
+        if (!GlobalHelper::success($resposta["code"])) {
             throw new TrayCommerceException("[Auth][gerarChaveAcesso]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
         }
         
@@ -68,7 +68,7 @@ class Auth extends HttpTray {
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             $token = new Token();
 
             $token

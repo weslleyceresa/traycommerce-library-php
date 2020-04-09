@@ -1,11 +1,9 @@
 <?php
 namespace Traycommerce\Library;
 
-include __DIR__ . "/../Helpers/Global.php";
-
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
-use function getCurlErrorByCode;
+use Traycommerce\Helpers\GlobalHelper;
 
 class HttpTray {
     private $base_url_api;
@@ -134,7 +132,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => getCurlErrorByCode($errCode)
+            "err" => GlobalHelper::getCurlErrorByCode($errCode)
         );
     }
 
@@ -174,7 +172,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => getCurlErrorByCode($errCode)
+            "err" => GlobalHelper::getCurlErrorByCode($errCode)
         );
     }
 }

@@ -4,7 +4,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class CupomDisconto extends BaseEndpoints{
     const uri = "discount_coupons/";
@@ -31,7 +31,7 @@ class CupomDisconto extends BaseEndpoints{
         
         $resposta = $this->postJson(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -54,7 +54,7 @@ class CupomDisconto extends BaseEndpoints{
         
         $resposta = $this->postJson(self::uri_create_relationship . $couponId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -77,7 +77,7 @@ class CupomDisconto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_create_relationship . $couponId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -101,7 +101,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -125,7 +125,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -149,7 +149,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_customer_relationship . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -173,7 +173,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_product_relationship . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -197,7 +197,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_category_relationship . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -221,7 +221,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_brand_relationship . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -245,7 +245,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_shipping_relationship . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -268,7 +268,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->put(self::uri_delete_relationship . $couponId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -290,7 +290,7 @@ class CupomDisconto extends BaseEndpoints{
 
         $resposta = $this->delete(self::uri . $couponId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

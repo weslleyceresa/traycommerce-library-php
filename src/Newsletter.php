@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Newsletter extends BaseEndpoints{
     const uri = "newsletter/";
@@ -30,7 +30,7 @@ class Newsletter extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -57,7 +57,7 @@ class Newsletter extends BaseEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -83,7 +83,7 @@ class Newsletter extends BaseEndpoints{
         
         $resposta = $this->post(self::uri . "confirmation/", $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

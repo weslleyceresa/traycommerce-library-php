@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Categoria extends BaseEndpoints {
 
@@ -25,7 +25,7 @@ class Categoria extends BaseEndpoints {
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -43,7 +43,7 @@ class Categoria extends BaseEndpoints {
 
         $resposta = $this->get(self::uri_tree, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -61,7 +61,7 @@ class Categoria extends BaseEndpoints {
 
         $resposta = $this->get(self::uri . $categoriaId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -77,7 +77,7 @@ class Categoria extends BaseEndpoints {
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -93,7 +93,7 @@ class Categoria extends BaseEndpoints {
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -109,7 +109,7 @@ class Categoria extends BaseEndpoints {
         
         $resposta = $this->delete(self::uri . $categoriaId, array(), $query);
         
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Pagamento extends BaseEndpoints{
     const uri = "payments/";
@@ -30,7 +30,7 @@ class Pagamento extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -54,7 +54,7 @@ class Pagamento extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $paymentId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -84,7 +84,7 @@ class Pagamento extends BaseEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -114,7 +114,7 @@ class Pagamento extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $paymentId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -136,7 +136,7 @@ class Pagamento extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri . $paymentId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -164,7 +164,7 @@ class Pagamento extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . "options", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -185,7 +185,7 @@ class Pagamento extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . "settings", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

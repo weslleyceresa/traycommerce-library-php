@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Produto extends BaseEndpoints{
     const uri = "products/";
@@ -34,7 +34,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -58,7 +58,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $productId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -107,7 +107,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -142,7 +142,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $productId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -164,7 +164,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri . $productId, [], $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -188,7 +188,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_brands, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -212,7 +212,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_brands . $brandId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -239,7 +239,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_brands, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -267,7 +267,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_brands . $brandId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -289,7 +289,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri_brands . $brandId, [], $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -313,7 +313,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_properties, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -342,7 +342,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->post(self::uri . $productId . "/properties", $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -366,7 +366,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_solds, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -390,7 +390,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_variants, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -414,7 +414,7 @@ class Produto extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_variants . $variantId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -454,7 +454,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_variants, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -489,7 +489,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_variants . $variantId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -511,7 +511,7 @@ class Produto extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri_variants . $variantId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

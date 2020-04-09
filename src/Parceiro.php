@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Parceiro extends BaseEndpoints{
     const uri = "partners/";
@@ -30,7 +30,7 @@ class Parceiro extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -54,7 +54,7 @@ class Parceiro extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $partnerId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -82,7 +82,7 @@ class Parceiro extends BaseEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -111,7 +111,7 @@ class Parceiro extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $partnerId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -133,7 +133,7 @@ class Parceiro extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri . $partnerId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

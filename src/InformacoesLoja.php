@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class InformacoesLoja extends BaseEndpoints{
     const uri = "info/";
@@ -28,7 +28,7 @@ class InformacoesLoja extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

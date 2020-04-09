@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Cliente extends BaseEndpoints{
     const uri = "customers/";
@@ -49,7 +49,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->post(self::uri . "login", $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -73,7 +73,7 @@ class Cliente extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -97,7 +97,7 @@ class Cliente extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $customerId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -162,7 +162,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -208,7 +208,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $customerId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -230,7 +230,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri . $customerId, [], $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -254,7 +254,7 @@ class Cliente extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_address, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -278,7 +278,7 @@ class Cliente extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_address . $addressId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -316,7 +316,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->post(self::uri_address, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -338,7 +338,7 @@ class Cliente extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri_address . $addressId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -370,7 +370,7 @@ class Cliente extends BaseEndpoints{
             )
         ), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -402,7 +402,7 @@ class Cliente extends BaseEndpoints{
             )
         ), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

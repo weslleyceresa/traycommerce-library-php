@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class PaginasLoja extends BaseEndpoints{
     const uri = "custom_pages/";
@@ -29,7 +29,7 @@ class PaginasLoja extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -53,7 +53,7 @@ class PaginasLoja extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $pageId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

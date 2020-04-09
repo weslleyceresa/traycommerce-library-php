@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class PalavrasChave extends BaseEndpoints{
     const uri = "words/";
@@ -29,7 +29,7 @@ class PalavrasChave extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -53,7 +53,7 @@ class PalavrasChave extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $wordId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

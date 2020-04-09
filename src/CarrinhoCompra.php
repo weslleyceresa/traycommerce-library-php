@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class CarrinhoCompra extends BaseEndpoints {
     const uri = "carts/";
@@ -29,7 +29,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->get(self::uri . $sessionId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -51,7 +51,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->get(self::uri . $sessionId . "/complete", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -92,7 +92,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -132,7 +132,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->put(self::uri . $sessionId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -154,7 +154,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->delete(self::uri . $sessionId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -183,7 +183,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->get($url, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -221,7 +221,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->put($url, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -254,7 +254,7 @@ class CarrinhoCompra extends BaseEndpoints {
 
         $resposta = $this->delete($url, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

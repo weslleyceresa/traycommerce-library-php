@@ -4,7 +4,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class LocaisVenda extends BaseEndpoints{
     const uri = "point_sales/";
@@ -31,7 +31,7 @@ class LocaisVenda extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $id, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -53,7 +53,7 @@ class LocaisVenda extends BaseEndpoints{
 
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -77,7 +77,7 @@ class LocaisVenda extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

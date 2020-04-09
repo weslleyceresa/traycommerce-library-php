@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class ProgressiveDiscount extends BaseEndpoints{
     const uri = "progressive_discounts/";
@@ -29,7 +29,7 @@ class ProgressiveDiscount extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -54,7 +54,7 @@ class ProgressiveDiscount extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $id, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

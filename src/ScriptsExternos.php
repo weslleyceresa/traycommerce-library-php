@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class ScriptsExternos extends BaseEndpoints{
     const uri = "external_scripts/";
@@ -30,7 +30,7 @@ class ScriptsExternos extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -56,7 +56,7 @@ class ScriptsExternos extends BaseEndpoints{
         
         $resposta = $this->put(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -82,7 +82,7 @@ class ScriptsExternos extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $scriptId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

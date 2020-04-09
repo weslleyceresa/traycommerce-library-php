@@ -4,7 +4,7 @@ namespace Traycommerce;
 use Exception;
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class Pedido extends BaseEndpoints{
     const uri = "orders/";
@@ -32,7 +32,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -56,7 +56,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $orderId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -78,7 +78,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->get(self::uri . $orderId . "/complete", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -128,7 +128,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -164,7 +164,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $orderId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -186,7 +186,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->put(self::uri . "cancel/" . $orderId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -208,7 +208,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri . $orderId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -232,7 +232,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->get(self::uri . "invoices", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -257,7 +257,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/" . $invoiceId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -281,7 +281,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->get(self::uri . $orderId . "/" . "invoices/", array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -317,7 +317,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->post(self::uri . $orderId . "/" . "invoices/", $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -354,7 +354,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . $orderId . "/" . "invoices/" . $invoiceId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -385,7 +385,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->post(self::uri . "includeProduct/" . $orderId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -408,7 +408,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->put(self::uri . "excludeProduct/" . $orderId . "/" . $productId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -432,7 +432,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_status, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -456,7 +456,7 @@ class Pedido extends BaseEndpoints{
 
         $resposta = $this->get(self::uri_status . $statusId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -483,7 +483,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->post(self::uri_status, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -511,7 +511,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->put(self::uri_status . $statusId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -533,7 +533,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->delete(self::uri_status . $statusId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -561,7 +561,7 @@ class Pedido extends BaseEndpoints{
         
         $resposta = $this->get(self::uri_tracking, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 

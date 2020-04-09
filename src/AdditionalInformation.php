@@ -3,7 +3,7 @@ namespace Traycommerce;
 
 use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
-use function success;
+use Traycommerce\Helpers\GlobalHelper;
 
 class AdditionalInformation extends BaseEndpoints {
     const uri = "additional_info/";
@@ -29,7 +29,7 @@ class AdditionalInformation extends BaseEndpoints {
 
         $resposta = $this->get(self::uri, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -54,7 +54,7 @@ class AdditionalInformation extends BaseEndpoints {
 
         $resposta = $this->get(self::uri . $additionInfoId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -78,7 +78,7 @@ class AdditionalInformation extends BaseEndpoints {
 
         $resposta = $this->delete(self::uri . $additionInfoId, array(), $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -101,7 +101,7 @@ class AdditionalInformation extends BaseEndpoints {
         
         $resposta = $this->put(self::uri . $variantId, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
@@ -123,7 +123,7 @@ class AdditionalInformation extends BaseEndpoints {
         
         $resposta = $this->post(self::uri, $data, $query);
 
-        if (success($resposta["code"])) {
+        if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
