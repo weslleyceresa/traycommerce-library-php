@@ -5,7 +5,7 @@ class GlobalHelper{
         $file = fopen(__DIR__ . "/../logs/logs.txt", "a+");
         fwrite($file, "[" . date("d/m/Y H:i:s") . "] - " . $text . "\n");
         fclose($file);
-    }
+    } 
     
     public static function success($code) {
         if (in_array($code, array(200, 201)))
