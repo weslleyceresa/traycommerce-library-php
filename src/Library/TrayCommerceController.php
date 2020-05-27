@@ -125,6 +125,9 @@ class TrayCommerceController {
             
             $this->setApiUrl($this->token->getApi_host());
         }
+        else{
+            $this->token = null;
+        }
                 
         return $this;
     }
