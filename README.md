@@ -49,13 +49,21 @@ $trayCommerceController->onRefreshedToken(function($newToken){
 //verificar se a loja ja autorizou a aplicação e 
 //setar as configurações de autorização
 if(isset($_GET["code"])){
-    $trayCommerceController
-            ->setCode($_GET["code"])
-            ->setApiUrl($_GET["api_address"]);
-}
 
-//autorizar a aplicação para gerar um token
-$trayCommerceController->authorizeApplication();
+    try{
+        $trayCommerceController
+            ->setCode($_GET["code"])
+            ->setApiUrl($_GET["api_address"])
+            ->checkValidToken();
+    }catch(\Exception $ex){
+
+    }
+    
+}
+else{
+    //autorizar a aplicação para gerar um token
+    $trayCommerceController->authorizeApplication();
+}
 ```
     
 #### GETTERS e SETTERS do objeto de Token
