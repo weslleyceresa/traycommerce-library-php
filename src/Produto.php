@@ -452,7 +452,7 @@ class Produto extends BaseEndpoints{
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
         
-        $resposta = $this->put(self::uri_variants, $data, $query);
+        $resposta = $this->post(self::uri_variants, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
