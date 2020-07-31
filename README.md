@@ -211,7 +211,73 @@ print_r($apiProdutoResponse);
 echo '</pre>';
 
 ```
-    
+   
+#### Usando o SDK - Gerenciar TOKEN
+
+Crie uma tarefa automatizada que rode a cada 5 minutos para chegar se o token salvo esta valido
+
+```php
+$trayCommerceController = TrayCommerceController::getInstance();
+        
+$trayCommerceController->clearEvents();
+
+//pega o token do banco
+$currentToken = $this->trayToken_model->getToken();
+
+$trayTokenModel = $this->trayToken_model;
+
+$trayCommerceController->onBeforeRefreshToken(function($oldToken) use ($trayTokenModel, $currentToken){
+    //voce pode marcar o token como bloqueado
+    //assim quando sua aplicação for pegar o token e ver que esta bloqueado pode esperar ele desbloquear
+    $trayTokenModel->edit($currentToken->id, array(
+        "status" => TrayToken_model::STATUS_UPDATING
+    ));
+
+    cliShowLn("Token bloqueado para atualização");
+});
+
+$trayCommerceController->onRefreshedToken(function(Token $newToken) use ($trayTokenModel, $currentToken){
+    $trayTokenModel->edit($currentToken->id, array(
+        "code" => $newToken->getCode(),
+        "message" => $newToken->getMessage(),
+        "accessToken" => $newToken->getAccess_token(),
+        "refreshToken" => $newToken->getRefresh_token(),
+        "dateExpirationAccessToken" => $newToken->getDate_expiration_access_token(),
+        "dateExpirationRefreshToken" => $newToken->getDate_expiration_refresh_token(),
+        "dateActivated" => $newToken->getDate_activated(),
+        "status" => TrayToken_model::STATUS_AVAILABLE,
+        "apiHost" => $newToken->getApi_host()
+    ));
+
+    cliShowLn("Token atualizado com sucesso");
+});
+
+$currentTokenToValid = new Token();
+
+$currentTokenToValid
+        ->setApi_host($currentToken->apiHost)
+        ->setCode($currentToken->code)
+        ->setMessage($currentToken->message)
+        ->setDate_activated($currentToken->dateActivated)
+        ->setAccess_token($currentToken->accessToken)
+        ->setRefresh_token($currentToken->refreshToken)
+        ->setDate_expiration_access_token($currentToken->dateExpirationAccessToken)
+        ->setDate_expiration_refresh_token($currentToken->dateExpirationRefreshToken)
+        ->setStore_id($currentToken->trayStoreId);
+
+$trayCommerceController->setToken($currentTokenToValid);        
+
+try{
+    $trayCommerceController
+        ->setConsumerKey("YOUR KEY")
+        ->setConsumerSecret("YOUR SECRET")
+        ->setCode("CODE STORE")
+        ->checkValidToken();
+} catch (Exception $ex) {
+    cliShowLn("Falha: " . $ex->getMessage());
+}
+```
+
 #### Manual dos metodos
 
 [Acessar manual das classes](https://github.com/weslleyceresa/traycommerce-library-php/tree/master/src "Acessar manual das classes")
