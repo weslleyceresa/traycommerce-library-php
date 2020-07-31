@@ -214,7 +214,7 @@ echo '</pre>';
    
 #### Usando o SDK - Gerenciar TOKEN
 
-Crie uma tarefa automatizada que rode a cada 5 minutos para chegar se o token salvo esta valido
+Crie uma tarefa automatizada que rode a cada 5 minutos para checar se o token salvo esta valido
 
 ```php
 $trayCommerceController = TrayCommerceController::getInstance();
