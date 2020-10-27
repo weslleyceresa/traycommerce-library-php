@@ -261,4 +261,3 @@ class CarrinhoCompra extends BaseEndpoints {
         throw new TrayCommerceException("[CarrinhoCompra][excluirProduto]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }
-?>

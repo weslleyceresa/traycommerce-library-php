@@ -88,5 +88,3 @@ class Auth extends HttpTray {
         throw new TrayCommerceException("[Auth][atualizarChaveAcesso]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }
-
-?>

@@ -568,5 +568,4 @@ class Pedido extends BaseEndpoints{
         throw new TrayCommerceException("[Pedido][etiquetasMercadoLivre]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
     }
 }
-?>
 
