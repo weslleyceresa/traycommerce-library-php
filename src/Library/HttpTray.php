@@ -132,7 +132,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => GlobalHelper::getCurlErrorByCode($errCode)
+            "err" => GlobalHelper::getCurlErrorByCode($errCode) . " URL: " . $url . " - Body: " . json_encode($postParams)
         );
     }
 
@@ -172,7 +172,7 @@ class HttpTray {
             "responseText" => $jsonRetorno,
             "code" => $code,
             "data" => $resposta,
-            "err" => GlobalHelper::getCurlErrorByCode($errCode)
+            "err" => GlobalHelper::getCurlErrorByCode($errCode) . " URL: " . $url . " - Body: " . json_encode($postParams)
         );
     }
 }
