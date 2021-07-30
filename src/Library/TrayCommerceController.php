@@ -13,6 +13,7 @@ class TrayCommerceController {
     
     private $eventsOnBeforeRefreshToken = array();
     private $eventsOnRefreshedToken = array();
+    private $eventsOnInvalidToken = array();
     
     private $consumerKey;
     private $consumerSecret;
@@ -27,7 +28,7 @@ class TrayCommerceController {
         $this->readOnly = false;
     }
     
-    public static function getInstance() {
+    public static function getInstance() : TrayCommerceController{
         if (!isset(self::$instance)) {
             self::$instance = new TrayCommerceController();
         }
@@ -43,8 +44,10 @@ class TrayCommerceController {
             if(empty($this->token))
                 throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Em modo leitura é necessário informar um token!");
                                     
-            if($this->token->isValid() != Token::VALID)
+            if($this->token->isValid() != Token::VALID){
+                $this->triggerEvent("invalidToken");
                 throw new TrayCommerceException("[TrayCommerceController][checkValidToken]", "Token inválido ou expirado!");
+            }
         }
         else{
             if(empty($this->getConsumerKey()) || empty($this->getConsumerSecret()) || empty($this->getCode()) || empty($this->getApiUrl()))
@@ -93,12 +96,19 @@ class TrayCommerceController {
                 
                 $this->eventsOnRefreshedToken = [];
             break;
+            
+            case "invalidToken":
+                foreach($this->eventsOnInvalidToken as $callback){
+                    $callback();
+                }
+            break;
         }
     }
     
     public function clearEvents(){
         $this->eventsOnRefreshedToken = [];
         $this->eventsOnBeforeRefreshToken = [];
+        $this->eventsOnInvalidToken = [];
         return $this;
     }
     
@@ -108,6 +118,10 @@ class TrayCommerceController {
     
     public function onRefreshedToken($callback){
         $this->eventsOnRefreshedToken[] = $callback;
+    }
+    
+    public function onInvalidToken($callback){
+        $this->eventsOnInvalidToken[] = $callback;
     }
     
     public function getToken(){
