@@ -73,8 +73,6 @@ class AdditionalInformation extends BaseEndpoints {
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
-        $query = array_merge($query, $filtros);
 
         $resposta = $this->delete(self::uri . $additionInfoId, array(), $query);
 
