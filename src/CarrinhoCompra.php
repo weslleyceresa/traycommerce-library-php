@@ -100,6 +100,39 @@ class CarrinhoCompra extends BaseEndpoints {
     }
     
     /*
+        $data = array(
+            "Cart" => array(
+                "session_id" => "",
+                "product_id" => "",
+                "variants_kit" => "[\"13-23397-11\"]",
+                "price" => "11.11",
+            )
+        )
+     */
+    
+    /**
+     * 
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function criarNovoComKit($data = array()) {
+        $this->trayCommerceController->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
+        );
+
+        $resposta = $this->postJson(self::uri, $data, $query);
+
+        if (GlobalHelper::success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException("[CarrinhoCompra][criarNovoComKit]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+    }
+    
+    /*
         $data["Cart"]["product_id"] = "123";
         $data["Cart"]["variant_id"] = "";
         $data["Cart"]["quantity"] = "1";
