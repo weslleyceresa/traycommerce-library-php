@@ -1,4 +1,5 @@
 <?php
+
 namespace Traycommerce;
 
 use Exception;
@@ -6,30 +7,34 @@ use Traycommerce\Exceptions\TrayCommerceException;
 use Traycommerce\Library\BaseEndpoints;
 use Traycommerce\Helpers\GlobalHelper;
 
-class Produto extends BaseEndpoints{
+class Produto extends BaseEndpoints
+{
     const uri = "products/";
     const uri_brands = "products/brands/";
     const uri_properties = "products/properties/";
     const uri_solds = "products_solds/";
     const uri_variants = "products/variants/";
-    
-    public function __construct() {
+    const uri_imagem = "products/{id_do_produto}/images";
+
+    public function __construct()
+    {
         parent::__construct();
     }
-    
+
     /**
-     * 
+     *
      * @param array $filtros
      * @return object
      * @throws Exception/
      */
-    public function listagem(array $filtros = array()){
+    public function listagem(array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri, array(), $query);
@@ -38,16 +43,17 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagem]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagem]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $productIddd
      * @return object
      * @throws Exception/
      */
-    public function dados($productId, array $filtros = array()){
+    public function dados($productId, array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
@@ -62,9 +68,9 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dados]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Product"]["ean"] = "9999";
         $data["Product"]["name"] = "Produto Teste API";
@@ -91,29 +97,30 @@ class Produto extends BaseEndpoints{
         $data["Product"]["shortcut"] = "";
         $data["Product"]["virtual_product"] = "0";
      */
-    
+
     /**
-     * 
+     *
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function cadastrar($data = array()) {
+    public function cadastrar($data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->post(self::uri, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrar]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrar]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Order"]["status_id"] = "16";
         $data["Order"]["taxes"] = "0.01";
@@ -126,64 +133,67 @@ class Produto extends BaseEndpoints{
         $data["Order"]["customer_note"] = "";
         $data["Order"]["partner_id"] = "2";
      */
-    
+
     /**
-     * 
+     *
      * @param int $productId
      * @return object
      * @throws Exception
      */
-    public function atualizarDados($productId, $data = array()) {
+    public function atualizarDados($productId, $data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->put(self::uri . $productId, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDados]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDados]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $productId
      * @return object
      * @throws Exception
      */
-    public function excluir($productId) {
+    public function excluir($productId)
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->delete(self::uri . $productId, [], $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluir]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluir]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param array $filtros
-     * @return object 
+     * @return object
      * @throws Exception
      */
-    public function listagemMarcas(array $filtros = array()){
+    public function listagemMarcas(array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_brands, array(), $query);
@@ -192,22 +202,23 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemMarcas]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemMarcas]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $brandId
      * @return object
      * @throws Exception/
      */
-    public function dadosMarca($brandId, array $filtros = array()){
+    public function dadosMarca($brandId, array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_brands . $brandId, array(), $query);
@@ -216,99 +227,103 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dadosMarca]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosMarca]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Brand"]["slug"] = "new-brand";
         $data["Brand"]["brand"] = "Nova Marca";
      */
-    
+
     /**
-     * 
+     *
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function cadastrarMarca($data = array()) {
+    public function cadastrarMarca($data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->put(self::uri_brands, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarMarca]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarMarca]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Brand"]["slug"] = "new-brand";
         $data["Brand"]["brand"] = "Nova Marca";
      */
-    
+
     /**
-     * 
+     *
      * @param int $brandId
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function atualizarDadosMarca($brandId, $data = array()) {
+    public function atualizarDadosMarca($brandId, $data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->put(self::uri_brands . $brandId, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDadosMarca]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosMarca]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $brandId
      * @return object
      * @throws Exception
      */
-    public function excluirMarca($brandId) {
+    public function excluirMarca($brandId)
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->delete(self::uri_brands . $brandId, [], $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluirMarca]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirMarca]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param array $filtros
-     * @return object 
+     * @return object
      * @throws Exception
      */
-    public function listagemCaracteristicasProdutos(array $filtros = array()){
+    public function listagemCaracteristicasProdutos(array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_properties, array(), $query);
@@ -317,51 +332,53 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemCaracterísticasProdutos]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemCaracterísticasProdutos]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data[] = ["property_id" => "1", "value" => "Branco", "index" => "0"];
         $data[] = ["property_id" => "2", "value" => "220v", "index" => "1"];
         $data[] = ["property_id" => "3", "value" => "Teste"];
      */
-    
+
     /**
-     * 
+     *
      * @param int $productId
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function cadastrarCaracteristicasProdutos($productId, $data = array()) {
+    public function cadastrarCaracteristicasProdutos($productId, $data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->post(self::uri . $productId . "/properties", $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarCaracterísticasProdutos]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarCaracterísticasProdutos]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param array $filtros
      * @return object
      * @throws Exception/
      */
-    public function listagemProdutosVendidos(array $filtros = array()){
+    public function listagemProdutosVendidos(array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_solds, array(), $query);
@@ -370,22 +387,23 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemProdutosVendidos]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemProdutosVendidos]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param array $filtros
      * @return object
      * @throws Exception/
      */
-    public function listagemVariacoes(array $filtros = array()){
+    public function listagemVariacoes(array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_variants, array(), $query);
@@ -394,22 +412,23 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][listagemVariacoes]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][listagemVariacoes]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $variantId
      * @return object
      * @throws Exception/
      */
-    public function dadosVariacao($variantId, array $filtros = array()){
+    public function dadosVariacao($variantId, array $filtros = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $query = array_merge($query, $filtros);
 
         $resposta = $this->get(self::uri_variants . $variantId, array(), $query);
@@ -418,9 +437,9 @@ class Produto extends BaseEndpoints{
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][dadosVariacao]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][dadosVariacao]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Variant"]["product_id"] = 123;
         $data["Variant"]["type_1"] = "Cor";
@@ -438,29 +457,30 @@ class Produto extends BaseEndpoints{
         $data["Variant"]["end_promotion"] = "2015-09-01";
         $data["Variant"]["promotional_price"] = 10.00;
      */
-    
+
     /**
-     * 
+     *
      * @param array $data
      * @return object
      * @throws Exception
      */
-    public function cadastrarVariacao($data = array()) {
+    public function cadastrarVariacao($data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->post(self::uri_variants, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrarVariacao]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarVariacao]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /*
         $data["Order"]["status_id"] = "16";
         $data["Order"]["taxes"] = "0.01";
@@ -473,48 +493,74 @@ class Produto extends BaseEndpoints{
         $data["Order"]["customer_note"] = "";
         $data["Order"]["partner_id"] = "2";
      */
-    
+
     /**
-     * 
+     *
      * @param int $variantId
      * @return object
      * @throws Exception
      */
-    public function atualizarDadosVariacao($variantId, $data = array()) {
+    public function atualizarDadosVariacao($variantId, $data = array())
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->put(self::uri_variants . $variantId, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][atualizarDadosVariacao]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][atualizarDadosVariacao]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
-    
+
     /**
-     * 
+     *
      * @param int $variantId
      * @return object
      * @throws Exception
      */
-    public function excluirVariacao($variantId) {
+    public function excluirVariacao($variantId)
+    {
         $this->trayCommerceController->checkValidToken();
 
         $query = array(
             "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
         );
-        
+
         $resposta = $this->delete(self::uri_variants . $variantId, $data, $query);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][excluirVariacao]", "(".$resposta["err"].") - ".$resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][excluirVariacao]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
+    }
+
+
+    /**
+     *
+     * @param array $data
+     * @return object
+     * @throws Exception
+     */
+    public function cadastrarImagens($productId, $data = array())
+    {
+        $this->trayCommerceController->checkValidToken();
+
+        $query = array(
+            "access_token" => $this->trayCommerceController->getToken()->getAccess_token()
+        );
+
+        $resposta = $this->post(str_replace('{id_do_produto}', $productId, self::uri_imagem), $data, $query);
+
+        if (GlobalHelper::success($resposta["code"])) {
+            return $resposta["data"];
+        }
+
+        throw new TrayCommerceException("[Produto][cadastrarImagens]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
 }
