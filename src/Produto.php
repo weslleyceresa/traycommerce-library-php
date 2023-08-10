@@ -561,6 +561,6 @@ class Produto extends BaseEndpoints
             return $resposta["data"];
         }
 
-        throw new TrayCommerceException("[Produto][cadastrar]['imagens]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
+        throw new TrayCommerceException("[Produto][cadastrarImagens]", "(" . $resposta["err"] . ") - " . $resposta["responseText"], $resposta["code"]);
     }
 }
