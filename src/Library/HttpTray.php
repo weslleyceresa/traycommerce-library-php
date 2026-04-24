@@ -115,6 +115,8 @@ class HttpTray {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 0);
 
         // JSON de retorno 
         $jsonRetorno = trim(curl_exec($ch));
@@ -155,6 +157,8 @@ class HttpTray {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 0);
 
         // JSON de retorno 
         $jsonRetorno = trim(curl_exec($ch));
