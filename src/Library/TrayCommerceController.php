@@ -214,8 +214,9 @@ class TrayCommerceController {
     }
 
     public function setApiUrl($apiUrl) {
-        if($apiUrl[strlen($apiUrl) - 1] != "/")
-            $apiUrl .= "/";
+        if (substr($apiUrl, -1) !== '/') {
+            $apiUrl .= '/';
+        }
         
         $this->apiUrl = $apiUrl;
         
