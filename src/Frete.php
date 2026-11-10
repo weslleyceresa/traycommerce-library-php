@@ -47,7 +47,7 @@ class Frete extends BaseEndpoints{
      */
     
     /**
-     * 
+     * Encode da URL desativado
      * @param array $filtros
      * @return object
      * @throws Exception/
