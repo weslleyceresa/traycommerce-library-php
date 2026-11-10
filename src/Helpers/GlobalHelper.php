@@ -1,6 +1,46 @@
 <?php namespace Traycommerce\Helpers;
 
 class GlobalHelper{
+    
+    function buildQueryRaw(array $params, string $prefix = ''): string{
+        $query = [];
+
+        foreach ($params as $key => $value) {
+            $name = $prefix !== ''
+                ? $prefix . '[' . $key . ']'
+                : (string) $key;
+
+            if (is_array($value)) {
+                $query[] = buildQueryRaw($value, $name);
+                continue;
+            }
+
+            if ($value === null) {
+                continue;
+            }
+
+            if (is_bool($value)) {
+                $value = $value ? '1' : '0';
+            } elseif (is_object($value) && method_exists($value, '__toString')) {
+                $value = (string) $value;
+            } elseif (is_object($value)) {
+                throw new InvalidArgumentException(
+                    "Objeto não suportado no parâmetro: {$name}"
+                );
+            } elseif (is_resource($value)) {
+                throw new InvalidArgumentException(
+                    "Resource não suportado no parâmetro: {$name}"
+                );
+            }
+
+            $query[] = $name . '=' . (string) $value;
+        }
+
+        return implode('&', array_filter($query, function ($item) {
+            return $item !== '';
+        }));
+    }
+    
     public static function generateLog($text) {
         $file = fopen(__DIR__ . "/../logs/logs.txt", "a+");
         fwrite($file, "[" . date("d/m/Y H:i:s") . "] - " . $text . "\n");

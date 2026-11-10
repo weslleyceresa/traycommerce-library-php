@@ -61,7 +61,7 @@ class Frete extends BaseEndpoints{
         
         $query = array_merge($query, $filtros);
 
-        $resposta = $this->get(self::uri . "cotation/", array(), $query);
+        $resposta = $this->get(self::uri . "cotation/", array(), $query, false);
 
         if (GlobalHelper::success($resposta["code"])) {
             return $resposta["data"];

@@ -22,48 +22,48 @@ class HttpTray {
         return $this->base_url_api = $baseUrlApi . "/";
     }
 
-    public function post($action, $params = array(), $query = array()) {
+    public function post($action, $params = array(), $query = array(), $encodeUrlParams = true) {
         if (empty($this->base_url_api))
             throw new TrayCommerceException("[TrayCommerce][post]", "base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-            $this->base_url_api . $action, $params, $query, "POST"
+            $this->base_url_api . $action, $params, $query, "POST", $encodeUrlParams
         );
     }
     
-    public function postJson($action, $params = array(), $query = array()) {
+    public function postJson($action, $params = array(), $query = array(), $encodeUrlParams = true) {
         if (empty($this->base_url_api))
             throw new TrayCommerceException("[TrayCommerce][postJson]", "base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-            $this->base_url_api . $action, $params, $query, "POST"
+            $this->base_url_api . $action, $params, $query, "POST", $encodeUrlParams
         );
     }
 
-    public function get($action, $params = array(), $query = array()) {
+    public function get($action, $params = array(), $query = array(), $encodeUrlParams = true) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPost(
-            $this->base_url_api . $action, $params, $query, "GET"
+            $this->base_url_api . $action, $params, $query, "GET", $encodeUrlParams
         );
     }
 
-    public function put($action, $params = array(), $query = array()) {
+    public function put($action, $params = array(), $query = array(), $encodeUrlParams = true) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-            $this->base_url_api . $action, $params, $query, "PUT"
+            $this->base_url_api . $action, $params, $query, "PUT", $encodeUrlParams
         );
     }
 
-    public function delete($action, $params = array(), $query = array()) {
+    public function delete($action, $params = array(), $query = array(), $encodeUrlParams = true) {
         if (empty($this->base_url_api))
             throw new Exception("base_url_api deve ser fornecido.");
 
         return $this->curlPut(
-            $this->base_url_api . $action, $params, $query, "DELETE"
+            $this->base_url_api . $action, $params, $query, "DELETE", $encodeUrlParams
         );
     }
 
@@ -93,8 +93,13 @@ class HttpTray {
         }
     }
 
-    private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST") {
-        $params = http_build_query($getParams);
+    private function curlPost($url, $postParams = array(), $getParams = array(), $type = "POST", $encodeUrlParams = true) {
+        if($encodeUrlParams){
+            $params = http_build_query($getParams);
+        }
+        else{
+            $params = GlobalHelper::buildQueryRaw($getParams);
+        }
         
         $url = $url . "?" . $params;
                
@@ -138,8 +143,15 @@ class HttpTray {
         );
     }
 
-    private function curlPut($url, $postParams = array(), $getParams = array(), $type = "PUT") {
-        $url = $url . "?" . http_build_query($getParams);
+    private function curlPut($url, $postParams = array(), $getParams = array(), $type = "PUT", $encodeUrlParams = true) {
+        if($encodeUrlParams){
+            $params = http_build_query($getParams);
+        }
+        else{
+            $params = GlobalHelper::buildQueryRaw($getParams);
+        }
+        
+        $url = $url . "?" . $params;
 
         $this->triggerEvent("before");
 
